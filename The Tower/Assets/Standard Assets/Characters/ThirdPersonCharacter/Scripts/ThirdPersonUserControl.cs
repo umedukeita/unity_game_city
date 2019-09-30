@@ -12,17 +12,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Vector3 m_CamForward;             // The current forward direction of the camera
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
-
+        public Camera camera; 
         public int ComNum;
-        private string[] H = { "Horizontal", "Horizontal2", "Horizontal3", "Horizontal4" };
-        private string[] V = { "Vertical", "Vertical2", "Vertical3", "Vertical4" };
-        private string[] R = { "R", "R2", "R3", "R4" }, L = { "L", "L2", "L3", "L4" }, B = { "B", "B2", "B3", "B4" };
+        private string[] H = { "Stick_Horizontal_L", "Stick_Horizontal_L2", "Stick_Horizontal_L3", "Stick_Horizontal_L4" };
+        private string[] V = { "Stick_Vertical_L", "Stick_Vertical_L2", "Stick_Vertical_L3", "Stick_Vertical_L4" };
+        private string[]  A = { "A", "A2", "A3", "A4" };
         private void Start()
         {
             // get the transform of the main camera
-            if (Camera.main != null)
+            if (camera != null)
             {
-                m_Cam = Camera.main.transform;
+                m_Cam = camera.transform;
             }
             else
             {
@@ -40,7 +40,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             if (!m_Jump)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                m_Jump = CrossPlatformInputManager.GetButtonDown(A[ComNum]);
             }
         }
 
@@ -49,8 +49,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void FixedUpdate()
         {
             // read inputs
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("Vertical");
+            float h = CrossPlatformInputManager.GetAxis(H[ComNum]);
+            float v = CrossPlatformInputManager.GetAxis(V[ComNum]);
             bool crouch = Input.GetKey(KeyCode.C);
 
             // calculate move direction to pass to character

@@ -13,9 +13,12 @@ namespace Player
         public LayerMask mask;
 
         public GameObject[] itemtype;
-        public GameObject DscImage;
+        public GameObject[] DscImage;
 
         public Text itemCapText;
+        public Slider HP_Slider;
+        public Slider Power_Slider;
+        public GameObject PowerMax;
         public RectTransform selectImage;
         public Sprite[] ItemSprite;
         public Image[] ItemImage;
@@ -24,6 +27,7 @@ namespace Player
         public int[] objNumber;
         public Transform RayPos;
 
+        private float HP = 100;
         private int itemCap;
         private GameObject[] items;
         private float time;
@@ -33,10 +37,9 @@ namespace Player
         
         public int ComNum;
         private string[] H = { "Horizontal", "Horizontal2", "Horizontal3", "Horizontal4" };
-        private string[] V = { "Vertical", "Vertical2", "Vertical3", "Vertical4" };
-        private string[] RH = { "RightH", "RightH2", "RightH3", "RightH4" };
-        private string[] LV = { "LeftV", "LeftV2", "LeftV3", "LeftV4" };
-
+        private string[] V = { "LeftV", "LeftV2", "LeftV3", "LeftV4" };
+        private string[] R = { "R", "R2", "R3", "R4" }, L = { "L", "L2", "L3", "L4" }, B = { "B", "B2", "B3", "B4" };
+        private string[] LT = { "L_Trigger", "L2_Trigger", "L3_Trigger", "L4_Trigger" }, RT = { "R_Trigger", "R2_Trigger", "R3_Trigger", "R4_Trigger" };
         bool b = true;
         // Use this for initialization
         void Start()
@@ -54,10 +57,25 @@ namespace Player
         {
             itemCapText.text = itemCap + "MB";
             ItemesCollect();
+            HP_Slider.value = HP;
+            if (items[select] != null) 
+            {
+                Power_Slider.maxValue = items[select].GetComponent<PrefabNumbr>().powersave;
+            }
+            Power_Slider.value = power;
+            if (Power_Slider.maxValue == Power_Slider.value)
+            {
+                PowerMax.SetActive(true);
+            }
+            else
+            {
+                PowerMax.SetActive(false);
+            }
+
             if (setKey)
             {
-                float tri = Input.GetAxis("L_R_Trigger");
-                if (Input.GetMouseButtonDown(0) || (tri < 0))
+                var tri = Input.GetAxis(RT[ComNum]);
+                if (Input.GetMouseButtonDown(0) || (tri > 0))
                 {
                     Invoke("ItemSet", 0.2f);
                 }
@@ -75,12 +93,27 @@ namespace Player
             }
         }
 
+        public void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag == "Block")
+            {
+                var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass;
+                if (damegeLog > 5)
+                {
+                    HP -= damegeLog;
+                }
+                Debug.Log(damegeLog);
+            }
+        }
+
         void ItemesCollect()
         {
             Ray ray = new Ray(RayPos.position, RayPos.forward);
             RaycastHit hit;
 
-            DscImage.SetActive(false);
+            DscImage[0].SetActive(false);
+            DscImage[1].SetActive(false);
+            DscImage[2].SetActive(false);
 
             if (Physics.Raycast(ray, out hit, 2.0f, mask))
             {
@@ -92,10 +125,12 @@ namespace Player
                         if (hit.collider.tag == "Block")
                         {
 
-                            DscImage.SetActive(true);
+                            DscImage[0].SetActive(true);
+                            DscImage[2].SetActive(true);
                         }
 
-                        if (Input.GetMouseButton(0) || Input.GetButton("B"))
+
+                        if (Input.GetMouseButton(0) || Input.GetButton(B[ComNum]))
                         {
 
                             animator.SetBool("Block", true);
@@ -118,8 +153,17 @@ namespace Player
 
                         }
                     }
+                    else
+                    {
+                        if (hit.collider.tag == "Block")
+                        {
+
+                            DscImage[1].SetActive(true);
+                            DscImage[2].SetActive(true);
+                        }
+                    }
                 }
-                else if (Input.GetMouseButtonUp(0) || Input.GetButtonUp("B"))
+                else if (Input.GetMouseButtonUp(0) || Input.GetButtonUp(B[ComNum]))
                 {
                     animator.SetBool("Block", false);
                     time = 0;
@@ -145,7 +189,6 @@ namespace Player
                     var pos = transform.position + transform.forward*itemnumber.size.x;
                     pos.y = pos.y + itemnumber.size.y;
                     Instantiate(items[select], pos, transform.rotation);
-                    itemCap += itemnumber.CapaCity;
                     items[select] = null;
                 }
             }
@@ -180,7 +223,7 @@ namespace Player
             }
 
 
-            if (Input.GetButtonDown("R"))
+            if (Input.GetButtonDown(R[ComNum]))
             {
                 if (b == false)
                 {
@@ -192,7 +235,7 @@ namespace Player
                     select = 0;
                 }
             }
-            else if (Input.GetButtonDown("L"))
+            else if (Input.GetButtonDown(L[ComNum]))
             {
                 if (b == false)
                 {
@@ -236,7 +279,9 @@ namespace Player
 
         void Gun()
         {
-            if (Input.GetMouseButton(1))
+            var L_Trigger = Input.GetAxis(LT[ComNum]);
+            var R_Trigger = Input.GetAxis(RT[ComNum]);
+            if (Input.GetMouseButton(1)||L_Trigger>0)
             {
                 if ((items[select] != null) &&items[select].GetComponent<PrefabNumbr>().powersave>power)
                 {
@@ -248,7 +293,7 @@ namespace Player
                 }
                 setKey = false;
                 animator.SetBool("EGUN", true);
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0)||R_Trigger>0)
                 {
                     if (items[select] != null)
                     {

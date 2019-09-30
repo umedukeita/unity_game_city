@@ -150,7 +150,7 @@ InputManager:
     axis: 2
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Horizontal
+    m_Name: Stick_Horizontal_L
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -163,10 +163,10 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 3
+    axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Horizontal2
+    m_Name: Stick_Horizontal_L2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -179,10 +179,10 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 3
+    axis: 0
     joyNum: 2
   - serializedVersion: 3
-    m_Name: Horizontal3
+    m_Name: Stick_Horizontal_L3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -195,10 +195,10 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 3
+    axis: 0
     joyNum: 3
   - serializedVersion: 3
-    m_Name: Horizontal4
+    m_Name: Stick_Horizontal_L4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -211,10 +211,10 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 3
+    axis: 0
     joyNum: 4
   - serializedVersion: 3
-    m_Name: Vertical
+    m_Name: Stick_Vertical_L
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -230,7 +230,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Vertical2
+    m_Name: Stick_Vertical_L2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -246,7 +246,7 @@ InputManager:
     axis: 1
     joyNum: 2
   - serializedVersion: 3
-    m_Name: Vertical3
+    m_Name: Stick_Vertical_L3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -262,7 +262,7 @@ InputManager:
     axis: 1
     joyNum: 3
   - serializedVersion: 3
-    m_Name: Vertical4
+    m_Name: Stick_Vertical_L4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -518,7 +518,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: RightH
+    m_Name: Stick_Horizontal_R
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -531,10 +531,10 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 0
+    axis: 3
     joyNum: 1
   - serializedVersion: 3
-    m_Name: RightH2
+    m_Name: Stick_Horizontal_R2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -547,10 +547,10 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 0
+    axis: 3
     joyNum: 2
   - serializedVersion: 3
-    m_Name: RightH3
+    m_Name: Stick_Horizontal_R3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -563,10 +563,10 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 0
+    axis: 3
     joyNum: 3
   - serializedVersion: 3
-    m_Name: RightH4
+    m_Name: Stick_Horizontal_R
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -579,10 +579,10 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 0
+    axis: 3
     joyNum: 4
   - serializedVersion: 3
-    m_Name: LeftV
+    m_Name: Stick_Vertical_R
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -598,7 +598,7 @@ InputManager:
     axis: 4
     joyNum: 1
   - serializedVersion: 3
-    m_Name: LeftV2
+    m_Name: Stick_Vertical_R2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -614,7 +614,7 @@ InputManager:
     axis: 4
     joyNum: 2
   - serializedVersion: 3
-    m_Name: LeftV3
+    m_Name: Stick_Vertical_R3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -630,7 +630,7 @@ InputManager:
     axis: 4
     joyNum: 3
   - serializedVersion: 3
-    m_Name: LeftV4
+    m_Name: Stick_Vertical_R4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -662,6 +662,54 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
+    m_Name: A2
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 2 button 0
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: A3
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 3 button 0
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: A4
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 3 button 0
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 4
+  - serializedVersion: 3
     m_Name: L_R_Trigger
     descriptiveName: 
     descriptiveNegativeName: 
@@ -677,6 +725,134 @@ InputManager:
     type: 2
     axis: 2
     joyNum: 1
+  - serializedVersion: 3
+    m_Name: L_Trigger
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.2
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 8
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: L2_Trigger
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.2
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 8
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: L3_Trigger
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.2
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 8
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: L4_Trigger
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.2
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 8
+    joyNum: 4
+  - serializedVersion: 3
+    m_Name: R_Trigger
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.2
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 9
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: R2_Trigger
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.2
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 9
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: R3_Trigger
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.2
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 9
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: R4_Trigger
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.2
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 9
+    joyNum: 4
   - serializedVersion: 3
     m_Name: Submit
     descriptiveName: 

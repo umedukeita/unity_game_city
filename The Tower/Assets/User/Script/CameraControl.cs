@@ -9,6 +9,10 @@ public class CameraControl : MonoBehaviour
     public float SlideDistanceM = 0f;       // カメラを横にスライドさせる；プラスの時右へ，マイナスの時左へ[m]
     public float HeightM = 1.2f;            // 注視点の高さ[m]
     public float RotationSensitivity = 100f;// 感度
+    public int PlayerNumber;
+
+    private string[] H = { "Stick_Horizontal_R", "Stick_Horizontal_R2", "Stick_Horizontal_R3", "Stick_Horizontal_R4" };
+    private string[] V = { "Stick_Vertical_R", "Stick_Vertical_R2", "Stick_Vertical_R3", "Stick_Vertical_R4" };
 
     void Start()
     {
@@ -23,8 +27,12 @@ public class CameraControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        var rotX = Input.GetAxis("Mouse X") * Time.deltaTime * RotationSensitivity;
+        /*var rotX = Input.GetAxis("Mouse X") * Time.deltaTime * RotationSensitivity;
         var rotY = Input.GetAxis("Mouse Y") * Time.deltaTime * RotationSensitivity;
+        */
+        var rotX = Input.GetAxis(H[PlayerNumber])*2f;
+        var rotY = Input.GetAxis(V[PlayerNumber])*2f;
+
 
         var lookAt = Target.position + Vector3.up * HeightM;
 
