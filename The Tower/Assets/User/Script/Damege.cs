@@ -19,7 +19,7 @@ public class Damege : MonoBehaviour {
         if (collision.gameObject.tag == "Block")
         {
             var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass;
-            Debug.Log(damegeLog/10.0f);
+            Debug.Log(damegeLog);
         }
     }
 }

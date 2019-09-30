@@ -6,6 +6,7 @@ public class PrefabNumbr : MonoBehaviour {
 
     public int Number;
     public int CapaCity;
-    public float size;
+    public Vector2 size;
     public float time;
+    public int powersave;
 }

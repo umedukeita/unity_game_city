@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour {
 
-    public PlayerCon player;
+    //public PlayerCon player;
     
 
     private Animator animator;
