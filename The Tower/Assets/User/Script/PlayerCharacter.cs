@@ -14,15 +14,15 @@ namespace Player
         public LayerMask mask;
 
         public GameObject[] itemtype;
-        public GameObject[] DscImage;
+        private GameObject[] DscImage;
 
-        public Text itemCapText;
-        public Slider HP_Slider;
-        public Slider Power_Slider;
-        public GameObject PowerMax;
-        public RectTransform selectImage;
+        private Text itemCapText;
+        private Slider HP_Slider;
+        private Slider Power_Slider;
+        private GameObject PowerMax;
+        private RectTransform selectImage;
         public Sprite[] ItemSprite;
-        public Image[] ItemImage;
+        private Image[] ItemImage;
         public GameObject gun;
         public int select = 0;
         public int[] objNumber;
@@ -45,20 +45,43 @@ namespace Player
         {
             animator = GetComponent<Animator>();
             itemtype = Resources.LoadAll("Prefab", typeof(GameObject)).Cast<GameObject>().ToArray();
-            items = new GameObject[3];
+            
             objNumber = new int[itemtype.Length];
-            itemCap = 100;
 
-        }
+			itemCap = 100;
+			items = new GameObject[3];
 
-        // Update is called once per frame
-        void FixedUpdate()
-        {
-			if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+			DscImage = new GameObject[3];
+			DscImage[2] = GameObject.Find("1pCanvas");
+			DscImage[1] = DscImage[2].transform.GetChild(1).gameObject;
+			DscImage[0] = DscImage[2].transform.GetChild(0).gameObject;
+
+			itemCapText = GameObject.Find("ItemPoint_1P").GetComponent<Text>();
+
+			HP_Slider = GameObject.Find("Slider_1P").GetComponent<Slider>();
+
+			Power_Slider = GameObject.Find("PowerSlider1").GetComponent<Slider>();
+
+			PowerMax = GameObject.Find("Max");
+
+			var frame = GameObject.Find("Itemframe_1P").gameObject.transform;
+			selectImage = frame.GetChild(0).GetComponent<RectTransform>();
+
+			ItemImage = new Image[3]; 
+			for (int i = 1; i < 4; i++)
 			{
-				return;
+				Debug.Log(frame.GetChild(i).GetComponent<Image>());
+				ItemImage[i-1]= frame.GetChild(i).GetComponent<Image>();
 			}
-			itemCapText.text = itemCap + "MB";
+
+		}
+
+		// Update is called once per frame
+		void FixedUpdate()
+        {
+			if (photonView.IsMine)
+			{
+				itemCapText.text = itemCap + "MB";
 				ItemesCollect();
 				HP_Slider.value = HP;
 				if (items[select] != null)
@@ -85,7 +108,7 @@ namespace Player
 				}
 				SelectItem();
 				Gun();
-			
+			}
         }
 
         public void OnTriggerEnter(Collider other)

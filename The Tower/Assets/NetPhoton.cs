@@ -6,8 +6,10 @@ using Photon.Realtime;
 
 public class NetPhoton : MonoBehaviourPunCallbacks {
 
+	public CameraControl camera;
 	// Use this for initialization
 	void Start () {
+		
 		PhotonNetwork.ConnectUsingSettings();
 	}
 	
@@ -19,14 +21,17 @@ public class NetPhoton : MonoBehaviourPunCallbacks {
 
 	public override void OnJoinedRoom()
 	{
+
 		if (PhotonNetwork.PlayerList.Length == 1)
 		{
-			PhotonNetwork.Instantiate("Player",new Vector3(0,1), Quaternion.identity);
+			var obj = PhotonNetwork.Instantiate("Player", new Vector3(0, 1), Quaternion.identity);
+			camera.Target = obj.transform;
 		}
 		else
 		{
-			PhotonNetwork.Instantiate("Player", new Vector3(1, 1), Quaternion.identity);
-		}
+			var obj = PhotonNetwork.Instantiate("Player", new Vector3(1, 1), Quaternion.identity);
+			camera.Target = obj.transform;
 
+		}
 	}
 }

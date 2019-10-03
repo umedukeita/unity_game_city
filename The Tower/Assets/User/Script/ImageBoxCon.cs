@@ -17,10 +17,10 @@ namespace Player {
         // Update is called once per frame
         void Update()
         {
-            if (player.select >= 0)
+           /* if (player.select >= 0)
             {
                 Image.sharedMesh = player.itemtype[player.objNumber[player.select]].GetComponent<MeshFilter>().sharedMesh;
-            }
+            }*/
         }
     }
 

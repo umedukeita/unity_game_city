@@ -34,6 +34,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 
 			// get the third person character ( this should never be null due to require component )
+			m_Cam = Camera.main.transform;
 			m_Character = GetComponent<ThirdPersonCharacter>();
 		}
 
@@ -51,10 +52,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		// Fixed update is called in sync with physics
 		private void FixedUpdate()
 		{
-			if (photonView.IsMine==false)
+			if (photonView.IsMine)
 			{
-				return;
-			}
 				// read inputs
 				/*float h = CrossPlatformInputManager.GetAxis(H[ComNum]);
 				float v = CrossPlatformInputManager.GetAxis(V[ComNum]);*/
@@ -82,7 +81,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				// pass all parameters to the character control script
 				m_Character.Move(m_Move, crouch, m_Jump);
 				m_Jump = false;
-			
+
+			}
 		}
 	}
 }
