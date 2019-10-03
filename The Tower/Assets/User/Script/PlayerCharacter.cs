@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Photon.Pun;
 
 namespace Player
 {
     [RequireComponent(typeof(PlayerContorol))]
-    public class PlayerCharacter : MonoBehaviour
+    public class PlayerCharacter : MonoBehaviourPunCallbacks
     {
 
         public LayerMask mask;
@@ -53,33 +54,38 @@ namespace Player
         // Update is called once per frame
         void FixedUpdate()
         {
-            itemCapText.text = itemCap + "MB";
-            ItemesCollect();
-            HP_Slider.value = HP;
-            if (items[select] != null) 
-            {
-                Power_Slider.maxValue = items[select].GetComponent<PrefabNumbr>().powersave;
-            }
-            Power_Slider.value = power;
-            if (Power_Slider.maxValue == Power_Slider.value)
-            {
-                PowerMax.SetActive(true);
-            }
-            else
-            {
-                PowerMax.SetActive(false);
-            }
+			if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+			{
+				return;
+			}
+			itemCapText.text = itemCap + "MB";
+				ItemesCollect();
+				HP_Slider.value = HP;
+				if (items[select] != null)
+				{
+					Power_Slider.maxValue = items[select].GetComponent<PrefabNumbr>().powersave;
+				}
+				Power_Slider.value = power;
+				if (Power_Slider.maxValue == Power_Slider.value)
+				{
+					PowerMax.SetActive(true);
+				}
+				else
+				{
+					PowerMax.SetActive(false);
+				}
 
-            if (setKey)
-            {
-                var tri = Input.GetAxis(RT[ComNum]);
-                if (Input.GetMouseButtonDown(0) || (tri > 0))
-                {
-                    Invoke("ItemSet", 0.2f);
-                }
-            }
-            SelectItem();
-            Gun();
+				if (setKey)
+				{
+					var tri = Input.GetAxis(RT[ComNum]);
+					if (Input.GetMouseButtonDown(0) || (tri > 0))
+					{
+						Invoke("ItemSet", 0.2f);
+					}
+				}
+				SelectItem();
+				Gun();
+			
         }
 
         public void OnTriggerEnter(Collider other)
