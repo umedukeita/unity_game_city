@@ -36,11 +36,9 @@ namespace Player
         public int power = 0;
         
         public int ComNum;
-        private string[] H = { "Horizontal", "Horizontal2", "Horizontal3", "Horizontal4" };
-        private string[] V = { "LeftV", "LeftV2", "LeftV3", "LeftV4" };
         private string[] R = { "R", "R2", "R3", "R4" }, L = { "L", "L2", "L3", "L4" }, B = { "B", "B2", "B3", "B4" };
         private string[] LT = { "L_Trigger", "L2_Trigger", "L3_Trigger", "L4_Trigger" }, RT = { "R_Trigger", "R2_Trigger", "R3_Trigger", "R4_Trigger" };
-        bool b = true;
+        bool b = true; 
         // Use this for initialization
         void Start()
         {
