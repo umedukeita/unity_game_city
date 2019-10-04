@@ -275,7 +275,25 @@ namespace Player
                 }
             }
 
-            if (select == 0)
+			var scroll = Input.GetAxis("Mouse ScrollWheel");
+			if (scroll > 0)
+			{
+				select++;
+				if (select > 2)
+				{
+					select = 0;
+				}
+			}
+			else if (scroll < 0)
+			{
+				select--;
+				if (select < 0)
+				{
+					select = 2;
+				}
+			}
+
+			if (select == 0)
             {
                 selectImage.localPosition = new Vector3(-32, 0, 0);
             }
@@ -288,6 +306,7 @@ namespace Player
                 selectImage.localPosition = new Vector3(32, 0, 0);
             }
 
+			
 
             for (int i = 0; i < 3; i++)
             {
