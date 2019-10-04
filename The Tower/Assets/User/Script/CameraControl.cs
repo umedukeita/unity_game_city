@@ -11,6 +11,8 @@ public class CameraControl : MonoBehaviour
     public float HeightM = 1.2f;            // 注視点の高さ[m]
     public float RotationSensitivity = 100f;// 感度
     public int PlayerNumber;
+
+	private float rotX = 0, rotY = 0;
     /*private string[] H = { "Stick_Horizontal_R", "Stick_Horizontal_R2", "Stick_Horizontal_R3", "Stick_Horizontal_R4" };
     private string[] V = { "Stick_Vertical_R", "Stick_Vertical_R2", "Stick_Vertical_R3", "Stick_Vertical_R4" };
 	*/
@@ -29,8 +31,8 @@ public class CameraControl : MonoBehaviour
 	{
 		if (Target!=null)
 		{
-			var rotX = Input.GetAxis("Mouse X") * Time.deltaTime * RotationSensitivity;
-			var rotY = -Input.GetAxis("Mouse Y") * Time.deltaTime * RotationSensitivity;
+			rotX += Input.GetAxis("Mouse X") ;
+			rotY -= Input.GetAxis("Mouse Y");
 			/*
 			var rotX = Input.GetAxis(H[PlayerNumber])*2f;
 			var rotY = Input.GetAxis(V[PlayerNumber])*2f;
@@ -38,20 +40,10 @@ public class CameraControl : MonoBehaviour
 
 			var lookAt = Target.position + Vector3.up * HeightM;
 
-			// 回転
-			transform.RotateAround(lookAt, Vector3.up, rotX);
-			// カメラがプレイヤーの真上や真下にあるときにそれ以上回転させないようにする
-			if (transform.forward.y > 0.9f && rotY < 0)
-			{
-				rotY = 0;
-			}
-			if (transform.forward.y < -0.9f && rotY > 0)
-			{
-				rotY = 0;
-			}
-			transform.RotateAround(lookAt, Vector3.right, -rotY);
+			rotY = Mathf.Clamp(rotY, -80, 60); //縦回転角度制限する
 
-			// カメラとプレイヤーとの間の距離を調整
+			transform.eulerAngles = new Vector3(-rotY, rotX, 0.0f); //回転の実行
+																   // カメラとプレイヤーとの間の距離を調整
 			transform.position = lookAt - transform.forward * DistanceToPlayerM;
 
 			// 注視点の設定

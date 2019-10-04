@@ -44,8 +44,7 @@ namespace Player
         void Start()
         {
             animator = GetComponent<Animator>();
-            itemtype = Resources.LoadAll("Prefab", typeof(GameObject)).Cast<GameObject>().ToArray();
-            
+           
             objNumber = new int[itemtype.Length];
 
 			itemCap = 100;
@@ -70,7 +69,6 @@ namespace Player
 			ItemImage = new Image[3]; 
 			for (int i = 1; i < 4; i++)
 			{
-				Debug.Log(frame.GetChild(i).GetComponent<Image>());
 				ItemImage[i-1]= frame.GetChild(i).GetComponent<Image>();
 			}
 
@@ -89,6 +87,7 @@ namespace Player
 					Power_Slider.maxValue = items[select].GetComponent<PrefabNumbr>().powersave;
 				}
 				Power_Slider.value = power;
+
 				if (Power_Slider.maxValue == Power_Slider.value)
 				{
 					PowerMax.SetActive(true);
@@ -98,14 +97,14 @@ namespace Player
 					PowerMax.SetActive(false);
 				}
 
-				if (setKey)
+				/*if (setKey)
 				{
 					var tri = Input.GetAxis(RT[ComNum]);
 					if (Input.GetMouseButtonDown(0) || (tri > 0))
 					{
 						Invoke("ItemSet", 0.2f);
 					}
-				}
+				}*/
 				SelectItem();
 				Gun();
 			}
@@ -124,7 +123,7 @@ namespace Player
         {
             if (collision.gameObject.tag == "Block")
             {
-                var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass;
+                var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass /10;
                 if (damegeLog > 5)
                 {
                     HP -= damegeLog;
@@ -213,9 +212,10 @@ namespace Player
                 if (items[select].tag == "Block")
                 {
                     var itemnumber = items[select].GetComponent<PrefabNumbr>();
-                    var pos = transform.position + transform.forward*itemnumber.size.x;
-                    pos.y = pos.y + itemnumber.size.y;
-                    Instantiate(items[select], pos, transform.rotation);
+                    
+					var InstPos = gun.transform.position + gun.transform.forward * itemnumber.size.x;
+					InstPos.y = InstPos.y + itemnumber.size.y;
+					PhotonNetwork.Instantiate(items[select].name, InstPos, transform.rotation); ;
                     items[select] = null;
                 }
             }
@@ -328,7 +328,7 @@ namespace Player
                         var InstPos = gun.transform.position + gun.transform.forward*ItemNumber.size.x;
                         InstPos.y = InstPos.y + ItemNumber.size.y;
 
-                        var bullet = Instantiate(items[select], InstPos, transform.rotation);
+                        var bullet = PhotonNetwork.Instantiate(items[select].name, InstPos, transform.rotation);
                         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
                         //var power = bulletRb.mass * itemCap * 20;
                         bulletRb.velocity = bullet.transform.forward*power;
