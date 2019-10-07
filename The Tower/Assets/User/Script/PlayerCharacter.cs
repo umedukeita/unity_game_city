@@ -14,29 +14,37 @@ namespace Player
         public LayerMask mask;
 
         public GameObject[] itemtype;
-        private GameObject[] DscImage;
+		public GameObject gun;
 
-        private Text itemCapText;
+
+		private GameObject[] items;
+		private GameObject[] DscImage;
+		private GameObject PowerMax;
+		private GameObject Gauge;
+
+		private Image GaugeImage;
+
+		private Text itemCapText;
         private Slider HP_Slider;
         private Slider Power_Slider;
-        private GameObject PowerMax;
+        
         private RectTransform selectImage;
         public Sprite[] ItemSprite;
         private Image[] ItemImage;
-        public GameObject gun;
+        
         public int select = 0;
         public int[] objNumber;
         public Transform RayPos;
 
         private float HP = 100;
         private int itemCap;
-        private GameObject[] items;
+        
         private float time;
         private Animator animator;
         private bool setKey;
         public int power = 0;
-        
-        public int ComNum;
+		
+		public int ComNum;
         private string[] R = { "R", "R2", "R3", "R4" }, L = { "L", "L2", "L3", "L4" }, B = { "B", "B2", "B3", "B4" };
         private string[] LT = { "L_Trigger", "L2_Trigger", "L3_Trigger", "L4_Trigger" }, RT = { "R_Trigger", "R2_Trigger", "R3_Trigger", "R4_Trigger" };
         bool b = true; 
@@ -62,6 +70,10 @@ namespace Player
 			Power_Slider = GameObject.Find("PowerSlider1").GetComponent<Slider>();
 
 			PowerMax = GameObject.Find("Max");
+
+			Gauge = GameObject.Find("Gauge");
+			GaugeImage = Gauge.GetComponent<Image>();
+			GaugeImage.fillAmount = 0;
 
 			var frame = GameObject.Find("Itemframe_1P").gameObject.transform;
 			selectImage = frame.GetChild(0).GetComponent<RectTransform>();
@@ -140,6 +152,7 @@ namespace Player
             DscImage[0].SetActive(false);
             DscImage[1].SetActive(false);
             DscImage[2].SetActive(false);
+			Gauge.SetActive (false);
 
             if (Physics.Raycast(ray, out hit, 2.0f, mask))
             {
@@ -148,6 +161,7 @@ namespace Player
                     var cap = hit.collider.GetComponent<PrefabNumbr>().CapaCity;
                     if (itemCap >= cap)
                     {
+
                         if (hit.collider.tag == "Block")
                         {
 
@@ -161,7 +175,11 @@ namespace Player
 
                             animator.SetBool("Block", true);
                             time += Time.deltaTime;
+
                             var objtime = hit.collider.GetComponent<PrefabNumbr>().time;
+							
+							Gauge.SetActive(true);
+							GaugeImage.fillAmount = time / objtime;
                             if (time > objtime)
                             {
 
@@ -186,6 +204,7 @@ namespace Player
 
                             DscImage[1].SetActive(true);
                             DscImage[2].SetActive(true);
+							
                         }
                     }
                 }

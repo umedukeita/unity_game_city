@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/jyogi/Documents/GitHub/unity_game_city/The Tower/APP/APP.exe
+C:/Users/jyogi/Documents/GitHub/unity_game_city/The Tower/The Tower.exe
 SceneListBegin?
 Assets/User/Scene/Main.unity
 SceneListEnd?
@@ -39,7 +39,7 @@ c3a9e82914d368e0b53a5de37fb3627a PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo
 05524b8f659e7bfe5756d1335fec24ba PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.ButtonInsideScrollList
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:.EventSystemChecker
 05524b8f659e7bfe5756d1335fec24ba PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.CullingHandler
-4b63e3da74c9a284c40880ebaaf0f720 Assembly-CSharp.dll:Player.PlayerCharacter
+305dac7556635eb32c1f7fb9265ee43e Assembly-CSharp.dll:Player.PlayerCharacter
 1ca5c8dc66d7df193309010a6f864080 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Hub.DemoHubManager
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
