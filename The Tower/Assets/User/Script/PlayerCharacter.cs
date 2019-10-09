@@ -22,27 +22,29 @@ namespace Player
 		private GameObject PowerMax;
 		private GameObject Gauge;
 
-		private Image GaugeImage;
+        private Image[] ItemImage;
+        private Image GaugeImage;
 
 		private Text itemCapText;
         private Slider HP_Slider;
         private Slider Power_Slider;
         
         private RectTransform selectImage;
-        public Sprite[] ItemSprite;
-        private Image[] ItemImage;
-        
-        public int select = 0;
-        public int[] objNumber;
-        public Transform RayPos;
 
         private float HP = 100;
         private int itemCap;
-        
+        private float RespawnTime=0;
         private float time;
         private Animator animator;
         private bool setKey;
+
+        public Sprite[] ItemSprite;
+        public Transform RayPos;
+
+        public int[] objNumber;
+        public int select = 0;
         public int power = 0;
+        
 		
 		public int ComNum;
         private string[] R = { "R", "R2", "R3", "R4" }, L = { "L", "L2", "L3", "L4" }, B = { "B", "B2", "B3", "B4" };
@@ -119,6 +121,10 @@ namespace Player
 				}*/
 				SelectItem();
 				Gun();
+                if (HP<=0)
+                {
+                    Respawn();
+                }
 			}
         }
 
@@ -126,7 +132,7 @@ namespace Player
         {
             if (other.gameObject.tag == "Memory")
             {
-                Destroy(other.gameObject);
+                PhotonNetwork.Destroy(other.gameObject);
                 itemCap += 100;
             }
         }
@@ -142,6 +148,15 @@ namespace Player
                 }
                 Debug.Log(damegeLog);
             }
+        }
+
+        void Respawn()
+        {
+            if (RespawnTime > 3)
+            {
+                HP = 100;
+            }
+
         }
 
         void ItemesCollect()
@@ -191,7 +206,7 @@ namespace Player
                                     itemCap -= items[select].GetComponent<PrefabNumbr>().CapaCity;
                                 }
 
-                                Destroy(hit.collider.gameObject);
+                                PhotonNetwork.Destroy(hit.collider.gameObject);
 
                             }
 

@@ -7,6 +7,7 @@ using Photon.Realtime;
 public class NetPhoton : MonoBehaviourPunCallbacks {
 
 	public CameraControl camera;
+
 	private int i = 0;
 	// Use this for initialization
 	void Start () {
@@ -23,10 +24,8 @@ public class NetPhoton : MonoBehaviourPunCallbacks {
 	public override void OnJoinedRoom()
 	{
 
-
 		var obj = PhotonNetwork.Instantiate("Player", new Vector3(i, 1), Quaternion.identity);
 		camera.Target = obj.transform;
-		i += 10;
 
 	}
 }
