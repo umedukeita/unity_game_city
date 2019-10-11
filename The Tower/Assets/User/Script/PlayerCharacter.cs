@@ -7,7 +7,7 @@ using Photon.Pun;
 
 namespace Player
 {
-    [RequireComponent(typeof(PlayerContorol))]
+ 
     public class PlayerCharacter : MonoBehaviourPunCallbacks
     {
 
@@ -49,7 +49,7 @@ namespace Player
         private string[] LT = { "L_Trigger", "L2_Trigger", "L3_Trigger", "L4_Trigger" }, RT = { "R_Trigger", "R2_Trigger", "R3_Trigger", "R4_Trigger" };
         bool b = true; 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             animator = GetComponent<Animator>();
            
@@ -126,7 +126,7 @@ namespace Player
         {
             if (other.gameObject.tag == "Memory")
             {
-                Destroy(other.gameObject);
+				Destroy(other.gameObject);
                 itemCap += 100;
             }
         }

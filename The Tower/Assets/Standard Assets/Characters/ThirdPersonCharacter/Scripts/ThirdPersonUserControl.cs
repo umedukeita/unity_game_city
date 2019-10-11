@@ -19,7 +19,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		private string[] H = { "Stick_Horizontal_L", "Stick_Horizontal_L2", "Stick_Horizontal_L3", "Stick_Horizontal_L4" };
 		private string[] V = { "Stick_Vertical_L", "Stick_Vertical_L2", "Stick_Vertical_L3", "Stick_Vertical_L4" };
 		private string[] A = { "A", "A2", "A3", "A4" };
-		private void Start()
+		private void Awake()
 		{
 			// get the transform of the main camera
 			if (camera != null)

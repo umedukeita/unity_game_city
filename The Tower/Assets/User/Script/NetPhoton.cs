@@ -10,23 +10,20 @@ public class NetPhoton : MonoBehaviourPunCallbacks {
 	private int i = 0;
 	// Use this for initialization
 	void Start () {
-		
-		PhotonNetwork.ConnectUsingSettings();
-	}
-	
-	// Update is called once per frame
- 	public override void OnConnectedToMaster() {
-		PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions(), TypedLobby.Default);
-
-	}
-
-	public override void OnJoinedRoom()
-	{
-
-
 		var obj = PhotonNetwork.Instantiate("Player", new Vector3(i, 1), Quaternion.identity);
 		camera.Target = obj.transform;
 		i += 10;
+		//PhotonNetwork.ConnectUsingSettings();
+	}
+	
+	// Update is called once per frame
+ 	/*public override void OnConnectedToMaster() {
+		PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions(), TypedLobby.Default);
+
+	}*/
+
+	public override void OnJoinedRoom()
+	{
 
 	}
 }
