@@ -17,7 +17,8 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 	void Start()
 	{
 		PhotonNetwork.ConnectUsingSettings();
-		
+		Room.SetActive(false);
+		Loby.SetActive(true);
 	}
 
 	private void Update()
@@ -78,5 +79,5 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		// 新しいルームリストに更新
 		roomInfoList = roomList;
 	}
-
+	
 }
