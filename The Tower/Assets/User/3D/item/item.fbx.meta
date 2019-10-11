@@ -1,20 +1,36 @@
 fileFormatVersion: 2
 guid: 2e84d00d5b7d3634383fcd28a0b01360
 ModelImporter:
-  serializedVersion: 26
-  internalIDToNameTable:
-  - first:
-      74: -1599475197567934812
-    second: Armature|open
-  - first:
-      74: 7560771317261827551
-    second: Armature|stay
-  - first:
-      74: -7248638528107450635
-    second: Armature|stay.001
-  - first:
-      74: 2953646145204325819
-    second: Armature|stay.002
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone
+    100004: Bone.001
+    100006: Bone.001_end
+    100008: Bone.002
+    100010: Bone.002_end
+    100012: capsule
+    100014: capsule.003
+    100016: //RootNode
+    400000: Armature
+    400002: Bone
+    400004: Bone.001
+    400006: Bone.001_end
+    400008: Bone.002
+    400010: Bone.002_end
+    400012: capsule
+    400014: capsule.003
+    400016: //RootNode
+    2100000: cap
+    4300000: capsule
+    4300002: capsule.003
+    7400000: Armature|open
+    7400002: Armature|stay
+    7400004: Armature|stay.001
+    7400006: Armature|stay.002
+    9500000: //RootNode
+    13700000: capsule
+    13700002: capsule.003
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -46,7 +62,6 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|open
       takeName: Armature|open
-      internalID: 0
       firstFrame: 0
       lastFrame: 119
       wrapMode: 0
@@ -75,7 +90,6 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|stay
       takeName: Armature|stay
-      internalID: 0
       firstFrame: 0
       lastFrame: 179
       wrapMode: 0
@@ -104,7 +118,6 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|stay.001
       takeName: Armature|stay.001
-      internalID: 0
       firstFrame: 0
       lastFrame: 179
       wrapMode: 0
@@ -133,7 +146,6 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|stay.002
       takeName: Armature|stay.002
-      internalID: 0
       firstFrame: 0
       lastFrame: 1
       wrapMode: 0
@@ -165,8 +177,6 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -174,13 +184,10 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -192,14 +199,10 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -209,8 +212,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

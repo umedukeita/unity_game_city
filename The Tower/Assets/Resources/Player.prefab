@@ -2684,9 +2684,9 @@ MonoBehaviour:
   ItemSprite:
   - {fileID: 21300000, guid: 0366ed6c548a35a498b31dd458c7aefa, type: 3}
   - {fileID: 21300000, guid: 92c8e6fe49f6f4f4ba47ed6714134f50, type: 3}
-  select: 0
-  objNumber: 
   RayPos: {fileID: 4789146194655794}
+  objNumber: 
+  select: 0
   power: 0
   ComNum: 0
 --- !u!114 &114917855559545154
