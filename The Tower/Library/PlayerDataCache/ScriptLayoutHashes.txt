@@ -1,7 +1,8 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/jyogi/Documents/GitHub/unity_game_city/The Tower/The Tower.exe
+C:/Users/jyogi/Documents/GitHub/unity_game_city/The Tower/APP/APP.exe
 SceneListBegin?
+Assets/User/Scene/Lobby.unity
 Assets/User/Scene/Main.unity
 SceneListEnd?
 501888fb5d0cecdd7c7e87c84035d44e PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.PlayerListCell
@@ -110,6 +111,7 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 293898d1b401864ff20cf1e6575dbad5 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.PunCockpit
 5ed32df694ce54d1c987b5674d7d2eaf Assembly-CSharp.dll:Photon.Realtime.Demo.ConnectAndJoinRandomLb
+d81c15039499df6fb5453a9e7e5c1e85 Assembly-CSharp.dll:.RoomContlor
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Ball.BallUserControl
 f41c5222aaa4557bb9cafa1c24b37a94 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Cameras.AutoCam
 875ad9a07bde133f83b571cc01f30262 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.RoomListCell
@@ -257,7 +259,6 @@ fe76270bd84ec3b6f2f6f92c69cf69da Assembly-CSharp-firstpass.dll:UnityStandardAsse
 03a5c77a43c0e59b697d418445dd431c PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.OnClickInstantiate
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.GameController
 a7d3c6c6948d99dd4116e659ddcf5ac4 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.ButtonHandler
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Player.PlayerContorol
 c3a9e82914d368e0b53a5de37fb3627a PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.CloudRegionProperty
 97fad6876fd8bbd73ad2849c651a3f62 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Characters.FirstPerson.HeadBob
 2076edc8fa3c8b9afea5c90c357b89f1 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Asteroids.PlayerOverviewPanel
