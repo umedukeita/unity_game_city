@@ -21,7 +21,11 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		Loby.SetActive(true);
 	}
 
-	private void Update()
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinLobby();
+    }
+    private void Update()
 	{
 		for (int i = 0; i < roomInfoList.Count; i++)
 		{
