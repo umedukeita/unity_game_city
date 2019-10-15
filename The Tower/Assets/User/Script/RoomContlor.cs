@@ -7,11 +7,11 @@ using Photon.Realtime;
 using UnityEngine.SceneManagement;
 public class RoomContlor : MonoBehaviourPunCallbacks
 {
-	public Text title;
+	public Text title,roomtext;
 	public Text[] NOP;
 	public GameObject[] RoomBuuton;
 	public GameObject Loby, Room;
-
+    public InputField inputField;
 	private List<RoomInfo> roomInfoList = new List<RoomInfo>();
 	// Use this for initialization
 	void Start()
@@ -19,6 +19,7 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		PhotonNetwork.ConnectUsingSettings();
 		Room.SetActive(false);
 		Loby.SetActive(true);
+        inputField = inputField.GetComponent<InputField>();
 	}
 
     public override void OnConnectedToMaster()
@@ -44,7 +45,6 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 			case 1: PhotonNetwork.JoinOrCreateRoom("Room1", new RoomOptions() { MaxPlayers = 4, IsVisible = true ,IsOpen=true}, null); break;
 			case 2: PhotonNetwork.JoinOrCreateRoom("Room2", new RoomOptions() { MaxPlayers = 4, IsVisible = true, IsOpen = true }, null); break;
 			case 3: PhotonNetwork.JoinOrCreateRoom("Room3", new RoomOptions() { MaxPlayers = 4, IsVisible = true, IsOpen = true }, null); break;
-			case 4: PhotonNetwork.JoinOrCreateRoom("Room4", new RoomOptions() { MaxPlayers = 4, IsVisible = true, IsOpen = true }, null); break;
 		}
 	}
 
@@ -60,16 +60,29 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		title.text = PhotonNetwork.CurrentRoom.Name;
 		Room.SetActive(true);
 		Loby.SetActive(false);
+        PhotonNetwork.NickName = inputField.text;
 		Debug.Log("OnJoinedRoom");
-	}
+        foreach (var player in PhotonNetwork.PlayerList)
+        {
+            roomtext.text = player.NickName + "\n";
+
+        }
+
+    }
 
 	public override void OnLeftRoom()
 	{
 		Debug.Log("OnLeftRoom");
 		Room.SetActive(false);
 		Loby.SetActive(true);
+
+        foreach(var player in PhotonNetwork.PlayerList)
+        {
+            roomtext.text = player.NickName + "\n";
+        }
 	}
 
+    
 	public override void OnRoomListUpdate(List<RoomInfo> roomList)
 	{
 		Debug.Log("OnRoomListUpdate");
