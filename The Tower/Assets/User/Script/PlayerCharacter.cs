@@ -135,7 +135,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
     {
         if (other.gameObject.tag == "Memory")
         {
-            photonView.RPC("DestroyObject", RpcTarget.All, other.gameObject);
+            PhotonNetwork.Destroy(other.gameObject);
             itemCap += 100;
         }
     }
@@ -218,7 +218,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
                                 itemCap -= items[select].GetComponent<PrefabNumbr>().CapaCity;
                             }
 
-                            photonView.RPC("DestroyObject", RpcTarget.All, hit.collider.gameObject);
+                            PhotonNetwork.Destroy(hit.collider.gameObject);
                         }
 
                     }
@@ -413,12 +413,4 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
 
     }
 
-    [PunRPC]
-    void DestroyObject(GameObject gameObject)
-    {
-        if (photonView.IsMine)
-        {
-            PhotonNetwork.Destroy(gameObject);
-        }
-    }
 }
