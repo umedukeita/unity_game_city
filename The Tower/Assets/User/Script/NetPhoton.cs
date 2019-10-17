@@ -14,7 +14,8 @@ public class NetPhoton : MonoBehaviourPunCallbacks {
 		if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
 		{
 			i = 0;
-		}
+            PhotonNetwork.Instantiate("Test", new Vector3(0, 1), Quaternion.identity);
+        }
 		else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
 		{
 			i = 10;
@@ -29,16 +30,8 @@ public class NetPhoton : MonoBehaviourPunCallbacks {
 		}
 
 		var obj = PhotonNetwork.Instantiate("Player", new Vector3(i, 1), Quaternion.identity);
-		camera.Target = obj.transform;
+        camera.Target = obj;
 	}
 	
-	// Update is called once per frame
- 	public override void OnConnectedToMaster() {
-		
-	}
-
-	public override void OnJoinedRoom()
-	{
-
-	}
+	
 }

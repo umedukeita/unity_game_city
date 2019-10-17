@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    public Transform Target;
+    public GameObject Target;
 	[SerializeField]
     public float DistanceToPlayerM = 2f;    // カメラとプレイヤーとの距離[m]
-    public float SlideDistanceM = 0f;       // カメラを横にスライドさせる；プラスの時右へ，マイナスの時左へ[m]
     public float HeightM = 1.2f;            // 注視点の高さ[m]
     public float RotationSensitivity = 100f;// 感度
     public int PlayerNumber;
@@ -27,31 +26,40 @@ public class CameraControl : MonoBehaviour
         }*/
     }
 
-	void FixedUpdate()
-	{
-		if (Target!=null)
-		{
-			rotX += Input.GetAxis("Mouse X") ;
-			rotY -= Input.GetAxis("Mouse Y");
-			/*
-			var rotX = Input.GetAxis(H[PlayerNumber])*2f;
-			var rotY = Input.GetAxis(V[PlayerNumber])*2f;
-			*/
+    void FixedUpdate()
+    {
+       
+        if (Target != null)
+        {
+            var HP = Target.GetComponent<PlayerCharacter>().HP;
+            if (HP >= 0)
+            {
+                rotX += Input.GetAxis("Mouse X");
+                rotY -= Input.GetAxis("Mouse Y");
+                /*
+                var rotX = Input.GetAxis(H[PlayerNumber])*2f;
+                var rotY = Input.GetAxis(V[PlayerNumber])*2f;
+                */
 
-			var lookAt = Target.position + Vector3.up * HeightM;
+                var lookAt = Target.transform.position + Vector3.up * HeightM;
 
-			rotY = Mathf.Clamp(rotY, -80, 60); //縦回転角度制限する
+                rotY = Mathf.Clamp(rotY, -80, 60); //縦回転角度制限する
 
-			transform.eulerAngles = new Vector3(-rotY, rotX, 0.0f); //回転の実行
-																   // カメラとプレイヤーとの間の距離を調整
-			transform.position = lookAt - transform.forward * DistanceToPlayerM;
+                transform.eulerAngles = new Vector3(-rotY, rotX, 0.0f); //回転の実行
+                                                                        // カメラとプレイヤーとの間の距離を調整
+                transform.position = lookAt - transform.forward * DistanceToPlayerM;
 
-			// 注視点の設定
-			transform.LookAt(lookAt);
+                // 注視点の設定
+                transform.LookAt(lookAt);
 
-			// カメラを横にずらして中央を開ける
-			transform.position = transform.position + transform.right * SlideDistanceM;
-		}
-	}
-	
+                // カメラを横にずらして中央を開ける
+                transform.position = transform.position + transform.right;
+            }
+            else
+            {
+                transform.position = new Vector3(0, 200, 0);
+                transform.eulerAngles = new Vector3(90, 0, 0);
+            }
+        }
+    }
 }

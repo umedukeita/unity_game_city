@@ -2681,13 +2681,14 @@ MonoBehaviour:
   - {fileID: 1211309595762686, guid: 81ec21669f69a1545abffaa40b8869fd, type: 2}
   - {fileID: 1863385284594270, guid: 880cec53675873343ae1031e59f56bed, type: 2}
   gun: {fileID: 1203444377449418}
+  HP: 100
+  power: 0
+  select: 0
+  objNumber: 
   ItemSprite:
   - {fileID: 21300000, guid: 0366ed6c548a35a498b31dd458c7aefa, type: 3}
   - {fileID: 21300000, guid: 92c8e6fe49f6f4f4ba47ed6714134f50, type: 3}
-  select: 0
-  objNumber: 
   RayPos: {fileID: 4789146194655794}
-  power: 0
   ComNum: 0
 --- !u!114 &114917855559545154
 MonoBehaviour:

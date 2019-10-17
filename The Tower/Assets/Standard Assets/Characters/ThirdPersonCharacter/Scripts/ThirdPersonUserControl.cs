@@ -34,7 +34,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 
 			// get the third person character ( this should never be null due to require component )
-			m_Cam = Camera.main.transform;
+			m_Cam = GameObject.Find("Camera_1P").GetComponent<Transform>();
 			m_Character = GetComponent<ThirdPersonCharacter>();
 		}
 
