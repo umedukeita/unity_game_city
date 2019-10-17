@@ -21,29 +21,34 @@ namespace Player
 		private GameObject[] DscImage;
 		private GameObject PowerMax;
 		private GameObject Gauge;
+		private GameObject DamageImage;
 
 		private Image GaugeImage;
-
+		
+		private Image[] ItemImage;
+		private RectTransform selectImage;
 		private Text itemCapText;
         private Slider HP_Slider;
         private Slider Power_Slider;
-        
-        private RectTransform selectImage;
-        public Sprite[] ItemSprite;
-        private Image[] ItemImage;
-        
-        public int select = 0;
-        public int[] objNumber;
-        public Transform RayPos;
 
-        private float HP = 100;
+		private Animator animator;
+
+		private float HP = 100;
+		private float time;
+
         private int itemCap;
         
-        private float time;
-        private Animator animator;
         private bool setKey;
-        public int power = 0;
-		
+
+
+		public int power = 0;
+		public int select = 0;
+        public int[] objNumber;
+
+		public Sprite[] ItemSprite;
+
+		public Transform RayPos;
+
 		public int ComNum;
         private string[] R = { "R", "R2", "R3", "R4" }, L = { "L", "L2", "L3", "L4" }, B = { "B", "B2", "B3", "B4" };
         private string[] LT = { "L_Trigger", "L2_Trigger", "L3_Trigger", "L4_Trigger" }, RT = { "R_Trigger", "R2_Trigger", "R3_Trigger", "R4_Trigger" };
@@ -57,11 +62,17 @@ namespace Player
 
 			itemCap = 100;
 			items = new GameObject[3];
-
+			DamageImage = GameObject.Find("Damege");
+			DamageImage.SetActive(false);
 			DscImage = new GameObject[3];
 			DscImage[2] = GameObject.Find("1pCanvas");
-			DscImage[1] = DscImage[2].transform.GetChild(1).gameObject;
-			DscImage[0] = DscImage[2].transform.GetChild(0).gameObject;
+			DscImage[1] = GameObject.Find("1PTEXT2");
+			DscImage[0] = GameObject.Find("1PTEXT");
+
+			foreach (var i in DscImage)
+			{
+				Debug.Log(i);
+			}
 
 			itemCapText = GameObject.Find("ItemPoint_1P").GetComponent<Text>();
 
@@ -141,8 +152,20 @@ namespace Player
                     HP -= damegeLog;
                 }
                 Debug.Log(damegeLog);
+				DamageEffect();
             }
         }
+		void DamageEffect()
+		{
+			if (DamageImage.activeSelf)
+			{
+				DamageImage.SetActive(false);
+			}
+			else {
+				DamageImage.SetActive(true);
+				Invoke("DamageEffect", 0.5f);
+			}
+		}
 
         void ItemesCollect()
         {

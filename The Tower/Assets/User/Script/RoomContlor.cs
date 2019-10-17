@@ -7,12 +7,15 @@ using Photon.Realtime;
 using UnityEngine.SceneManagement;
 public class RoomContlor : MonoBehaviourPunCallbacks
 {
-	public Text title,roomtext;
+	public Text title,roomtext,countdown;
 	public Text[] NOP;
 	public GameObject[] RoomBuuton;
 	public GameObject Loby, Room;
     public InputField inputField;
 	private List<RoomInfo> roomInfoList = new List<RoomInfo>();
+	private float count = 5, maching = 0;
+	public bool countkey;
+	PhotonView PhotonView;
 	// Use this for initialization
 	void Start()
 	{
@@ -20,13 +23,23 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		Room.SetActive(false);
 		Loby.SetActive(true);
         inputField = inputField.GetComponent<InputField>();
+		PhotonView = GetComponent<PhotonView>();
+		countkey = false;
 	}
 
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
     }
-    private void Update()
+
+	private void Update()
+	{
+		RoomInfoText();
+		Maching();
+		
+
+	}
+	void RoomInfoText()
 	{
 		for (int i = 0; i < roomInfoList.Count; i++)
 		{
@@ -35,7 +48,41 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 				NOP[i].text = string.Format("{0}/{1}", roomInfoList[i].PlayerCount, roomInfoList[i].MaxPlayers);
 			}
 		}
-	
+	}
+
+	private void Maching()
+	{
+		if (countkey)
+		{
+			count -= Time.deltaTime;
+			countdown.text = "ゲーム開始まで残り" + (int)count + "秒";
+			if (count <= 0)
+			{
+				PhotonView.RPC("ChangeScene", RpcTarget.All);
+			}
+		}
+		else
+		{
+			count = 5;
+			countdown.text = "マッチング中";
+			maching += Time.deltaTime;
+			if (maching > 1)
+			{
+				countdown.text += "・";
+			}
+			if (maching > 2)
+			{
+				countdown.text += "・";
+			}
+			if (maching > 3)
+			{
+				countdown.text += "・";
+			}
+			if (maching > 4)
+			{
+				maching = 0;
+			}
+		}
 	}
 
 	public void JoinRoomSelect(int number)
@@ -62,27 +109,41 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		Loby.SetActive(false);
         PhotonNetwork.NickName = inputField.text;
 		Debug.Log("OnJoinedRoom");
-        foreach (var player in PhotonNetwork.PlayerList)
-        {
-            roomtext.text = player.NickName + "\n";
+		RoomPlayerText();
 
-        }
-
-    }
+		if (PhotonNetwork.CurrentRoom.PlayerCount == 4)
+		{
+			PhotonView.RPC("StartCountDown", RpcTarget.All);
+		}
+	}
 
 	public override void OnLeftRoom()
 	{
 		Debug.Log("OnLeftRoom");
 		Room.SetActive(false);
 		Loby.SetActive(true);
-
-        foreach(var player in PhotonNetwork.PlayerList)
-        {
-            roomtext.text = player.NickName + "\n";
-        }
+		
+	}
+	public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+	{
+		RoomPlayerText();
+		
+	}
+	public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+	{
+		RoomPlayerText();
 	}
 
-    
+	private void RoomPlayerText()
+	{
+		roomtext.text = "";
+		foreach (var player in PhotonNetwork.PlayerList)
+		{
+			roomtext.text += player.NickName + "\n";
+		}
+	}
+
+	
 	public override void OnRoomListUpdate(List<RoomInfo> roomList)
 	{
 		Debug.Log("OnRoomListUpdate");
@@ -95,6 +156,16 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 
 		// 新しいルームリストに更新
 		roomInfoList = roomList;
+		
 	}
-	
+
+	[PunRPC]
+	private void ChangeScene()
+	{
+		SceneManager.LoadScene("Main");
+	}
+	[PunRPC]
+	private void StartCountDown() {
+		countkey = true;
+	}
 }

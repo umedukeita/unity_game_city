@@ -10,17 +10,32 @@ public class NetPhoton : MonoBehaviourPunCallbacks {
 	private int i = 0;
 	// Use this for initialization
 	void Start () {
+
+		if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+		{
+			i = 0;
+		}
+		else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
+		{
+			i = 10;
+		}
+		else if (PhotonNetwork.LocalPlayer.ActorNumber == 3)
+		{
+			i = 20;
+		}
+		else if (PhotonNetwork.LocalPlayer.ActorNumber == 4)
+		{
+			i = 30;
+		}
+
 		var obj = PhotonNetwork.Instantiate("Player", new Vector3(i, 1), Quaternion.identity);
 		camera.Target = obj.transform;
-		i += 10;
-		//PhotonNetwork.ConnectUsingSettings();
 	}
 	
 	// Update is called once per frame
- 	/*public override void OnConnectedToMaster() {
-		PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions(), TypedLobby.Default);
-
-	}*/
+ 	public override void OnConnectedToMaster() {
+		
+	}
 
 	public override void OnJoinedRoom()
 	{
