@@ -135,8 +135,9 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
     {
         if (other.gameObject.tag == "Memory")
         {
-            PhotonNetwork.Destroy(other.gameObject);
-            itemCap += 100;
+            Destroy(other.gameObject);
+			
+			itemCap += 100;
         }
     }
 
@@ -218,8 +219,9 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
                                 itemCap -= items[select].GetComponent<PrefabNumbr>().CapaCity;
                             }
 
-                            PhotonNetwork.Destroy(hit.collider.gameObject);
-                        }
+                            //PhotonNetwork.Destroy(hit.collider.gameObject);
+							photonView.RPC("DestroyObject", RpcTarget.All,hit.collider.gameObject.name);
+						}
 
                     }
                 }
@@ -247,7 +249,6 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
         }
 
     }
-
 
     void ItemSet()
     {
@@ -412,5 +413,11 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
         }
 
     }
-
+	[PunRPC]
+	void DestroyObject(string name)
+	{
+		var gameObject = GameObject.Find(name);
+		Destroy(gameObject);
+		
+	}
 }

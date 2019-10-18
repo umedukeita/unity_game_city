@@ -15,6 +15,7 @@ public class NetPhoton : MonoBehaviourPunCallbacks {
 		{
 			i = 0;
             PhotonNetwork.Instantiate("Test", new Vector3(0, 1), Quaternion.identity);
+			PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
         }
 		else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
 		{
