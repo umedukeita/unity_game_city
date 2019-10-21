@@ -53,7 +53,7 @@ public class CameraControl : MonoBehaviour
                 transform.LookAt(lookAt);
 
                 // カメラを横にずらして中央を開ける
-                transform.position = transform.position + transform.right;
+                //transform.position = transform.position + transform.right;
             }
             else
             {

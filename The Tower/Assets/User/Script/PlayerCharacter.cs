@@ -417,7 +417,13 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
 	void DestroyObject(string name)
 	{
 		var gameObject = GameObject.Find(name);
-		Destroy(gameObject);
-		
+        if (photonView.IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 	}
 }
