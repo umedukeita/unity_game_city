@@ -154,10 +154,6 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
             Debug.Log((int)damegeLog);
 
         }
-        if (HP <= 0)
-        {
-
-        }
     }
     void DamageEffect()
     {
