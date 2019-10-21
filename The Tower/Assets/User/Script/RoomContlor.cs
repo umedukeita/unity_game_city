@@ -92,7 +92,8 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 			case 1: PhotonNetwork.JoinOrCreateRoom("Room1", new RoomOptions() { MaxPlayers = 4, IsVisible = true ,IsOpen=true}, null); break;
 			case 2: PhotonNetwork.JoinOrCreateRoom("Room2", new RoomOptions() { MaxPlayers = 4, IsVisible = true, IsOpen = true }, null); break;
 			case 3: PhotonNetwork.JoinOrCreateRoom("Room3", new RoomOptions() { MaxPlayers = 4, IsVisible = true, IsOpen = true }, null); break;
-		}
+            case 4: PhotonNetwork.JoinOrCreateRoom("Room4", new RoomOptions() { MaxPlayers = 4, IsVisible = true, IsOpen = true }, null); SceneManager.LoadScene("Main"); break;
+        }
 	}
 
 	public void RoomButton(string type)

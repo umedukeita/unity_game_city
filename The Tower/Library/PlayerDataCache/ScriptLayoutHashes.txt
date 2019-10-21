@@ -289,7 +289,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-3bc3b1f3fd1b2c5997ab61a02b276580 Assembly-CSharp.dll:.PrefabNumbr
+c0e674c9f287a8821981960a97523bfc Assembly-CSharp.dll:.PrefabNumbr
 ee8540d1efea9148410a914295c889e3 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.OnJoinedInstantiate
 fe180736ec3bd9cf69fd20bbec04acfb PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.PunBasics.LoaderAnime
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Item

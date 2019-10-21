@@ -155,6 +155,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
 
         }
     }
+
     void DamageEffect()
     {
         if (DamageImage.activeSelf)
@@ -215,9 +216,10 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
                                 itemCap -= items[select].GetComponent<PrefabNumbr>().CapaCity;
                             }
 
+                            //Destroy(hit.collider.gameObject);
                             //PhotonNetwork.Destroy(hit.collider.gameObject);
-							photonView.RPC("DestroyObject", RpcTarget.All,hit.collider.gameObject.name);
-						}
+                            photonView.RPC("DestroyObject", RpcTarget.All,hit.collider.gameObject.name);
+                        }
 
                     }
                 }
@@ -396,7 +398,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
                     //itemCap += items[select].GetComponent<PrefabNumbr>().CapaCity;
                     power = 0;
                     items[select] = null;
-
+                    //Debug.Break();
                 }
             }
         }
@@ -409,17 +411,12 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
         }
 
     }
+
 	[PunRPC]
 	void DestroyObject(string name)
 	{
 		var gameObject = GameObject.Find(name);
-        if (photonView.IsMine)
-        {
-            PhotonNetwork.Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        
+        Destroy(gameObject);
 	}
 }
