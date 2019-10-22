@@ -145,9 +145,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Number: 2
   CapaCity: 0
-  size: {x: 15.5, y: 235, z: 0}
+  size: {x: 15.5, y: 25, z: 0}
   time: 1
-  powersave: 100
+  powersave: 80
 --- !u!114 &114609871264400402
 MonoBehaviour:
   m_ObjectHideFlags: 1

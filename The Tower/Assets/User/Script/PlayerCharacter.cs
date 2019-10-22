@@ -151,7 +151,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
         if (collision.gameObject.tag == "Block")
         {
             var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass / 10;
-            if (damegeLog > 5)
+            if (damegeLog > 10)
             {
                 HP -= (int)damegeLog;
                 DamageEffect();
