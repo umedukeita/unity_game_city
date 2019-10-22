@@ -10,7 +10,7 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 	public Text title,roomtext,countdown;
 	public Text[] NOP;
 	public GameObject[] RoomBuuton;
-	public GameObject Loby, Room;
+	public GameObject Loby, Room,Exit;
     public InputField inputField;
 	private List<RoomInfo> roomInfoList = new List<RoomInfo>();
 	private float count = 5, maching = 0;
@@ -52,8 +52,10 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 
 	private void Maching()
 	{
+		RoomPlayerText();
 		if (countkey)
 		{
+			Exit.SetActive(false);
 			count -= Time.deltaTime;
 			countdown.text = "ゲーム開始まで残り" + (int)count + "秒";
 			if (count <= 0)
@@ -63,6 +65,7 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		}
 		else
 		{
+			Exit.SetActive(true);
 			count = 5;
 			countdown.text = "マッチング中";
 			maching += Time.deltaTime;
@@ -108,7 +111,16 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		title.text = PhotonNetwork.CurrentRoom.Name;
 		Room.SetActive(true);
 		Loby.SetActive(false);
-        PhotonNetwork.NickName = inputField.text;
+		string text;
+		if (inputField.text == "")
+		{
+			text = "Player" + PhotonNetwork.LocalPlayer.ActorNumber;
+		}
+		else
+		{
+			text = inputField.text;
+		}
+        PhotonNetwork.NickName = text;
 		Debug.Log("OnJoinedRoom");
 		RoomPlayerText();
 
@@ -142,6 +154,7 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		{
 			roomtext.text += player.NickName + "\n";
 		}
+		
 	}
 
 	

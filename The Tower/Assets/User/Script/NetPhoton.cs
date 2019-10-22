@@ -7,30 +7,33 @@ using Photon.Realtime;
 public class NetPhoton : MonoBehaviourPunCallbacks {
 
 	public CameraControl camera;
-	private int i = 0;
+	private Vector3 v;
 	// Use this for initialization
 	void Start () {
 
 		if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
 		{
-			i = -90;
-            PhotonNetwork.Instantiate("Convieni", new Vector3(-90, 2.5f, -40), Quaternion.identity);
+			v.x = -200;
+			v.z = 200;
 			PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
         }
 		else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
 		{
-			i = -100;
+			v.x = 200;
+			v.z = 200;
 		}
 		else if (PhotonNetwork.LocalPlayer.ActorNumber == 3)
 		{
-			i = -80;
+			v.x = -200;
+			v.z = -200;
 		}
 		else if (PhotonNetwork.LocalPlayer.ActorNumber == 4)
 		{
-			i = -70;
+			v.x = 200;
+			v.z = -200;
 		}
         
-        var obj = PhotonNetwork.Instantiate("Player", new Vector3(i, 1,-50), Quaternion.identity);
+        var obj = PhotonNetwork.Instantiate("Player", v, Quaternion.identity);
         camera.Target = obj;
 	}
 	

@@ -24,6 +24,9 @@ GameObject:
   - component: {fileID: 64311564080846004}
   - component: {fileID: 54309475267009682}
   - component: {fileID: 114250462148505094}
+  - component: {fileID: 114229356419355630}
+  - component: {fileID: 114316447757010194}
+  - component: {fileID: 114577565344013562}
   m_Layer: 8
   m_Name: Buil_M
   m_TagString: Block
@@ -107,7 +110,7 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1890733882526950}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: dc11f211b384f3f46a54ca80693d50cc, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -115,6 +118,28 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300026, guid: 1ca98e88a86ef2344b692e34736a6df4, type: 3}
+--- !u!114 &114229356419355630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890733882526950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 114316447757010194}
+  - {fileID: 114577565344013562}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &114250462148505094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,6 +153,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Number: 1
   CapaCity: 0
-  size: {x: 0, y: 0}
-  time: 0
-  powersave: 0
+  size: {x: 15, y: 20, z: 0}
+  time: 1
+  powersave: 100
+--- !u!114 &114316447757010194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890733882526950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+--- !u!114 &114577565344013562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890733882526950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3

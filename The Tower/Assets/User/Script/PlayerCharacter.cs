@@ -32,10 +32,10 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
     private Animator animator;
 
     public float HP = 100;
-    private float time;
+    private float time,retime;
 
     private int itemCap;
-
+	private int dead;
     private bool setKey;
 
 
@@ -58,7 +58,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
 
         objNumber = new int[itemtype.Length];
 
-        itemCap = 100;
+        itemCap = 10000;
         items = new GameObject[3];
         DamageImage = GameObject.Find("Damege");
         DamageImage.SetActive(false);
@@ -93,6 +93,10 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
             ItemImage[i - 1] = frame.GetChild(i).GetComponent<Image>();
         }
 
+		var properties = new ExitGames.Client.Photon.Hashtable();
+		properties.Add("Dead", dead);
+		PhotonNetwork.LocalPlayer.SetCustomProperties(properties);
+ 
     }
 
     // Update is called once per frame
@@ -118,6 +122,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
                 PowerMax.SetActive(false);
             }
 
+			
             /*if (setKey)
             {
                 var tri = Input.GetAxis(RT[ComNum]);
@@ -151,10 +156,25 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
                 HP -= (int)damegeLog;
                 DamageEffect();
             }
+			if (HP <= 0)
+			{
+				this.transform.position = new Vector3(0, -19, 0);
+				Invoke("ReSpawn", 5f);
+			}
             Debug.Log((int)damegeLog);
 
         }
     }
+
+	void ReSpawn()
+	{
+		dead++;
+		var hashtable = new ExitGames.Client.Photon.Hashtable();
+		hashtable["Dead"] = dead;
+		PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
+		HP = 100 * (dead + 1);
+		this.transform.position = new Vector3(-90, 1, -50);
+	}
 
     void DamageEffect()
     {
@@ -398,6 +418,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
                     //itemCap += items[select].GetComponent<PrefabNumbr>().CapaCity;
                     power = 0;
                     items[select] = null;
+					Debug.Break();
                     //Debug.Break();
                 }
             }

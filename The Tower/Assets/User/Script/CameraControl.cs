@@ -52,13 +52,16 @@ public class CameraControl : MonoBehaviour
                 // 注視点の設定
                 transform.LookAt(lookAt);
 
-                // カメラを横にずらして中央を開ける
-                //transform.position = transform.position + transform.right;
+				this.GetComponent<Camera>().orthographic=false;
+				this.GetComponent<Camera>().fieldOfView = 60;
+
             }
             else
             {
                 transform.position = new Vector3(0, 200, 0);
                 transform.eulerAngles = new Vector3(90, 0, 0);
+				this.GetComponent<Camera>().orthographic = true;
+				this.GetComponent<Camera>().orthographicSize = 250;
             }
         }
     }

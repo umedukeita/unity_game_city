@@ -24,6 +24,9 @@ GameObject:
   - component: {fileID: 64862510807250332}
   - component: {fileID: 54055966872456174}
   - component: {fileID: 114573692643968666}
+  - component: {fileID: 114831053707568208}
+  - component: {fileID: 114546589813726096}
+  - component: {fileID: 114609871264400402}
   m_Layer: 8
   m_Name: Buil_MM
   m_TagString: Block
@@ -107,7 +110,7 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486469680700902}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: daede937e3f391841982735d26846823, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -115,6 +118,20 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300030, guid: 1ca98e88a86ef2344b692e34736a6df4, type: 3}
+--- !u!114 &114546589813726096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486469680700902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!114 &114573692643968666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,6 +145,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Number: 2
   CapaCity: 0
-  size: {x: 0, y: 0}
-  time: 0
-  powersave: 0
+  size: {x: 15.5, y: 235, z: 0}
+  time: 1
+  powersave: 100
+--- !u!114 &114609871264400402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486469680700902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &114831053707568208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486469680700902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 114546589813726096}
+  - {fileID: 114609871264400402}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

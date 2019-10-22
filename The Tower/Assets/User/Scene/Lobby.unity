@@ -1571,6 +1571,7 @@ MonoBehaviour:
   - {fileID: 1948550623}
   Loby: {fileID: 1023876834}
   Room: {fileID: 1065923851}
+  Exit: {fileID: 1948550623}
   inputField: {fileID: 81172917}
   countkey: 0
 --- !u!4 &1569538876
