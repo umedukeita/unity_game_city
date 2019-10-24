@@ -40,7 +40,7 @@ c3a9e82914d368e0b53a5de37fb3627a PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo
 05524b8f659e7bfe5756d1335fec24ba PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.ButtonInsideScrollList
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:.EventSystemChecker
 05524b8f659e7bfe5756d1335fec24ba PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.CullingHandler
-0606acc78e224135b60409962b5e1b7a Assembly-CSharp.dll:.PlayerCharacter
+07c702db6970745d93bd9181821d92d9 Assembly-CSharp.dll:.PlayerCharacter
 1ca5c8dc66d7df193309010a6f864080 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Hub.DemoHubManager
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -358,7 +358,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 c0e674c9f287a8821981960a97523bfc Assembly-CSharp.dll:.PrefabNumbr
 ee8540d1efea9148410a914295c889e3 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.OnJoinedInstantiate
 fe180736ec3bd9cf69fd20bbec04acfb PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.PunBasics.LoaderAnime
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Item
+ac5aa7b1966f79aa6dca8acd9c15b757 Assembly-CSharp.dll:.Item
 d28ceb61785754e7d5567286586392b7 PhotonUnityNetworking.Demos.dll:.ScoreHelper
 e431d31333ee8da538bb41a55aca1f3e PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.SlotRacer.SlotLanes
 8f8366f0522d35b7b7e9eebf3181bf1c PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.IntInputField

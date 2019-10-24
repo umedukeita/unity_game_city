@@ -5,24 +5,28 @@ using UnityEngine;
 
 public class Item : MonoBehaviour {
 
-    //public PlayerCon player;
-    
-
-    private Animator animator;
-    // Use this for initialization
+	//public PlayerCon player;
+	public GameObject item;
+    public float ReSpwanTime;
+	private float time;
     void Start () {
-        animator = GetComponent<Animator>();
 
     }
 
     // Update is called once per frame
     void Update() {
 
-        //Select();
-        //Image();
 
+		if (item.activeSelf == false)
+		{
+			time += Time.deltaTime;
+			if (time > ReSpwanTime)
+			{
+				item.gameObject.SetActive(true);
+				time = 0;
+			}
 
-       
+		}
     }
 
     

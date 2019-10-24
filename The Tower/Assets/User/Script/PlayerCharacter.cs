@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using Photon.Pun;
+using System;
 
-
-public class PlayerCharacter : MonoBehaviourPunCallbacks
+public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
 {
 
     public LayerMask mask;
@@ -14,32 +14,38 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
     public GameObject[] itemtype;
     public GameObject gun;
 
-
     private GameObject[] items;
     private GameObject[] DscImage;
     private GameObject PowerMax;
     private GameObject Gauge;
     private GameObject DamageImage;
+	private GameObject rank;
 
-    private Image GaugeImage;
 
+	private Image GaugeImage;
     private Image[] ItemImage;
+
     private RectTransform selectImage;
+
     private Text itemCapText;
+	private Text rankText;
+	private Text TimeLimit;
+
+
     private Slider HP_Slider;
     private Slider Power_Slider;
 
     private Animator animator;
 
-    public float HP = 100;
-    private float time,retime;
+	private float time;
 
     private int itemCap;
-	private int dead;
+	private int[] deads = new int[4];
     private bool setKey;
 
-
-    public int power = 0;
+	public float HP = 100;
+	public float timelimit=120;
+	public int power = 0;
     public int select = 0;
     public int[] objNumber;
 
@@ -50,6 +56,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
     public int ComNum;
     private string[] R = { "R", "R2", "R3", "R4" }, L = { "L", "L2", "L3", "L4" }, B = { "B", "B2", "B3", "B4" };
     private string[] LT = { "L_Trigger", "L2_Trigger", "L3_Trigger", "L4_Trigger" }, RT = { "R_Trigger", "R2_Trigger", "R3_Trigger", "R4_Trigger" };
+	private bool gameEnd = true;
     bool b = true;
     // Use this for initialization
     void Awake()
@@ -61,18 +68,23 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
         itemCap = 10000;
         items = new GameObject[3];
         DamageImage = GameObject.Find("Damege");
-        DamageImage.SetActive(false);
+       
         DscImage = new GameObject[3];
         DscImage[2] = GameObject.Find("1pCanvas");
         DscImage[1] = GameObject.Find("1PTEXT2");
         DscImage[0] = GameObject.Find("1PTEXT");
+		rank = GameObject.Find("Rank");
+		
 
         foreach (var i in DscImage)
         {
             Debug.Log(i);
         }
+		rankText = GameObject.Find("RankText").GetComponent<Text>();
 
-        itemCapText = GameObject.Find("ItemPoint_1P").GetComponent<Text>();
+		TimeLimit = GameObject.Find("TimeLimit").GetComponent<Text>();
+		TimeLimit.text = "0";
+		itemCapText = GameObject.Find("ItemPoint_1P").GetComponent<Text>();
 
         HP_Slider = GameObject.Find("Slider_1P").GetComponent<Slider>();
 
@@ -94,9 +106,9 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
         }
 
 		var properties = new ExitGames.Client.Photon.Hashtable();
-		properties.Add("Dead", dead);
-		PhotonNetwork.LocalPlayer.SetCustomProperties(properties);
- 
+
+		DamageImage.SetActive(false);
+		rank.SetActive(false);
     }
 
     // Update is called once per frame
@@ -105,7 +117,13 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
         if (photonView.IsMine)
         {
             itemCapText.text = itemCap + "MB";
-            ItemesCollect();
+			timelimit -= Time.deltaTime;
+			if (timelimit <= 0)
+			{
+				photonView.RPC("GameEnd", RpcTarget.All);
+			}
+			TimeLimit.text = timelimit.ToString("F2");
+			ItemesCollect();
             HP_Slider.value = HP;
             if (items[select] != null)
             {
@@ -140,15 +158,15 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
     {
         if (other.gameObject.tag == "Memory")
         {
-            Destroy(other.gameObject);
-			
+			other.gameObject.SetActive(false);
 			itemCap += 100;
         }
     }
 
+
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Block")
+        if (collision.gameObject.tag == "Block"&&gameEnd)
         {
             var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass / 10;
             if (damegeLog > 10)
@@ -158,6 +176,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
             }
 			if (HP <= 0)
 			{
+				deads[PhotonNetwork.LocalPlayer.ActorNumber-1]++;
 				this.transform.position = new Vector3(0, -19, 0);
 				Invoke("ReSpawn", 5f);
 			}
@@ -166,13 +185,10 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
         }
     }
 
+
 	void ReSpawn()
 	{
-		dead++;
-		var hashtable = new ExitGames.Client.Photon.Hashtable();
-		hashtable["Dead"] = dead;
-		PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
-		HP = 100 * (dead + 1);
+		HP = 100 * (deads[PhotonNetwork.LocalPlayer.ActorNumber - 1] + 1);
 		this.transform.position = new Vector3(-90, 1, -50);
 	}
 
@@ -433,11 +449,48 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
 
     }
 
+	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if (stream.IsWriting)
+		{
+			stream.SendNext(timelimit);
+			stream.SendNext(deads);
+		}
+		else
+		{
+			timelimit = (float)stream.ReceiveNext();
+			deads = (int[])stream.ReceiveNext();
+		}
+	}
+
 	[PunRPC]
 	void DestroyObject(string name)
 	{
 		var gameObject = GameObject.Find(name);
         
         Destroy(gameObject);
+	}
+	[PunRPC]
+	void GameEnd()
+	{
+
+		gameEnd = false;
+		rank.SetActive(true);
+		var juni =deads;
+		Array.Sort(juni);
+		rankText.text = "";
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				if (juni[i]==deads[j])
+				{
+					rankText.text +="第"+i+"位"+"　　"+PhotonNetwork.PlayerList[j].NickName;
+					break;
+				}
+			}
+		}
+
+		
 	}
 }
