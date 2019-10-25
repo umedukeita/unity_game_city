@@ -2677,15 +2677,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   itemtype:
-  - {fileID: 1957083178683622, guid: 35d60656fae49734aa691a3693460145, type: 2}
+  - {fileID: 100006, guid: 09f4942833b61cf429ab5ae4addaacac, type: 3}
   - {fileID: 1890733882526950, guid: 3148cf20e9848b7468a565a990c101dd, type: 2}
   - {fileID: 1486469680700902, guid: 0dcb63788843295468fe57911fd7121f, type: 2}
   - {fileID: 1314466180287772, guid: 06a05872b52390148ab2afbfb6202d47, type: 2}
   - {fileID: 1398983168112548, guid: 75d23045a904a01409b4481db24daf82, type: 2}
   - {fileID: 1524062701039312, guid: 36820048ed587a948996d658c1740779, type: 2}
+  - {fileID: 1524406923159120, guid: 39746813f3dfea44b997e05ef00f4f17, type: 2}
   gun: {fileID: 1203444377449418}
   HP: 100
-  timelimit: 60
+  timelimit: 180
   power: 0
   select: 0
   objNumber: 

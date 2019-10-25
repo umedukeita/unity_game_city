@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1073431131367924}
-  ReSpwanTime: 3
+  ReSpwanTime: 10
 --- !u!137 &137739981834725846
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

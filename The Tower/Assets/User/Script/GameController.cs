@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -11,10 +13,20 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
 		
 			//if (Input.GetKey(KeyCode.Escape)) Quit();
 		
 	}
+
+	public void Back()
+	{
+		PhotonNetwork.LeaveRoom();
+		SceneManager.LoadScene("Lobby");
+		
+	}
+
 	void Quit()
 	{
 #if UNITY_EDITOR

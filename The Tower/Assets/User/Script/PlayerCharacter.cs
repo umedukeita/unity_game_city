@@ -40,7 +40,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
 	private float time;
 
     private int itemCap;
-	private int[] deads = new int[4];
+	private int dead=0;
     private bool setKey;
 
 	public float HP = 100;
@@ -65,7 +65,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
 
         objNumber = new int[itemtype.Length];
 
-        itemCap = 10000;
+        itemCap = 100;
         items = new GameObject[3];
         DamageImage = GameObject.Find("Damege");
        
@@ -74,12 +74,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
         DscImage[1] = GameObject.Find("1PTEXT2");
         DscImage[0] = GameObject.Find("1PTEXT");
 		rank = GameObject.Find("Rank");
-		
-
-        foreach (var i in DscImage)
-        {
-            Debug.Log(i);
-        }
+	
 		rankText = GameObject.Find("RankText").GetComponent<Text>();
 
 		TimeLimit = GameObject.Find("TimeLimit").GetComponent<Text>();
@@ -106,6 +101,8 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
         }
 
 		var properties = new ExitGames.Client.Photon.Hashtable();
+		properties.Add("Dead", dead);
+		PhotonNetwork.LocalPlayer.SetCustomProperties(properties);
 
 		DamageImage.SetActive(false);
 		rank.SetActive(false);
@@ -118,11 +115,14 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
         {
             itemCapText.text = itemCap + "MB";
 			timelimit -= Time.deltaTime;
+			TimeLimit.text = timelimit.ToString("F2");
 			if (timelimit <= 0)
 			{
+				var properties = new ExitGames.Client.Photon.Hashtable();
+				properties["Dead"]=dead;
+				PhotonNetwork.LocalPlayer.SetCustomProperties(properties);
 				photonView.RPC("GameEnd", RpcTarget.All);
 			}
-			TimeLimit.text = timelimit.ToString("F2");
 			ItemesCollect();
             HP_Slider.value = HP;
             if (items[select] != null)
@@ -159,7 +159,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
         if (other.gameObject.tag == "Memory")
         {
 			other.gameObject.SetActive(false);
-			itemCap += 100;
+			itemCap += 100*(dead+1);
         }
     }
 
@@ -168,15 +168,16 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
     {
         if (collision.gameObject.tag == "Block"&&gameEnd)
         {
-            var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass / 10;
-            if (damegeLog > 10)
+            var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass / 100;
+            if (damegeLog > 5)
             {
                 HP -= (int)damegeLog;
                 DamageEffect();
             }
 			if (HP <= 0)
 			{
-				deads[PhotonNetwork.LocalPlayer.ActorNumber-1]++;
+				dead++;
+
 				this.transform.position = new Vector3(0, -19, 0);
 				Invoke("ReSpawn", 5f);
 			}
@@ -188,7 +189,9 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
 
 	void ReSpawn()
 	{
-		HP = 100 * (deads[PhotonNetwork.LocalPlayer.ActorNumber - 1] + 1);
+		HP = 100;
+
+		itemCap += 100 * (dead + 1);
 		this.transform.position = new Vector3(-90, 1, -50);
 	}
 
@@ -454,12 +457,10 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
 		if (stream.IsWriting)
 		{
 			stream.SendNext(timelimit);
-			stream.SendNext(deads);
 		}
 		else
 		{
 			timelimit = (float)stream.ReceiveNext();
-			deads = (int[])stream.ReceiveNext();
 		}
 	}
 
@@ -473,24 +474,40 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
 	[PunRPC]
 	void GameEnd()
 	{
-
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
 		gameEnd = false;
 		rank.SetActive(true);
-		var juni =deads;
-		Array.Sort(juni);
+		var juni_a= new int[4];
+		var juni_b = new int[4];
+		object p_object;
+		for (int i = 0; i < 4; i++)
+		{	if (PhotonNetwork.PlayerList[i].CustomProperties.TryGetValue("Dead", out p_object))
+			{
+				juni_a[i] = (int)p_object;
+				juni_b[i] = (int)p_object;
+			}
+		}
+		Array.Sort(juni_a);
+
+		var text = new string[4];
+		
 		rankText.text = "";
 		for (int i = 0; i < 4; i++)
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				if (juni[i]==deads[j])
+				if (juni_b[i]==juni_a[j])
 				{
-					rankText.text +="第"+i+"位"+"　　"+PhotonNetwork.PlayerList[j].NickName;
+					text[i] = "第" + (j+1) + "位" + "　　" +PhotonNetwork.PlayerList[i].NickName;
 					break;
 				}
 			}
 		}
+		for (int i = 0; i < 4; i++)
+		{
+			rankText.text += text[i]+"\n";
+		}
 
-		
 	}
 }

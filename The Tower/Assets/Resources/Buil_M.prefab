@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Number: 1
-  CapaCity: 0
+  CapaCity: 1000
   size: {x: 15, y: 20, z: 0}
   time: 1
   powersave: 80
