@@ -2636,8 +2636,8 @@ MonoBehaviour:
   m_JumpPower: 5
   m_GravityMultiplier: 4
   m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 3
-  m_AnimSpeedMultiplier: 1
+  m_MoveSpeedMultiplier: 2.5
+  m_AnimSpeedMultiplier: 1.3
   m_GroundCheckDistance: 0.3
 --- !u!114 &114879990210119478
 MonoBehaviour:
@@ -2686,7 +2686,7 @@ MonoBehaviour:
   - {fileID: 1524406923159120, guid: 39746813f3dfea44b997e05ef00f4f17, type: 2}
   - {fileID: 1759513813341292, guid: aad9f7e7591db2e4681a7ed8b8254d7a, type: 2}
   gun: {fileID: 1203444377449418}
-  HP: 100
+  HP: 300
   timelimit: 180
   power: 0
   select: 0

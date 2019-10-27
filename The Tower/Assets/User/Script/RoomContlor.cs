@@ -10,7 +10,7 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 	public Text title,roomtext,countdown;
 	public Text[] NOP;
 	public GameObject[] RoomBuuton;
-	public GameObject Loby, Room,Exit;
+	public GameObject Loby, Room;
     public InputField inputField;
 	private List<RoomInfo> roomInfoList = new List<RoomInfo>();
 	private float count = 5, maching = 0;
@@ -55,7 +55,7 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		RoomPlayerText();
 		if (countkey)
 		{
-			Exit.SetActive(false);
+			
 			count -= Time.deltaTime;
 			countdown.text = "ゲーム開始まで残り" + (int)count + "秒";
 			if (count <= 0)
@@ -65,7 +65,6 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		}
 		else
 		{
-			Exit.SetActive(true);
 			count = 5;
 			countdown.text = "マッチング中";
 			maching += Time.deltaTime;
@@ -143,8 +142,8 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		
 	}
 	public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
-	{
-		RoomPlayerText();
+	{        
+        RoomPlayerText();
 	}
 
 	private void RoomPlayerText()
