@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/User/Scene/Lobby.unity
+- path: Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/DemoHub-Scene.unity
   isLoaded: 1
   isActive: 1

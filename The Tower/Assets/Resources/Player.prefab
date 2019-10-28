@@ -2687,7 +2687,7 @@ MonoBehaviour:
   - {fileID: 1759513813341292, guid: aad9f7e7591db2e4681a7ed8b8254d7a, type: 2}
   gun: {fileID: 1203444377449418}
   HP: 300
-  timelimit: 180
+  timelimit: 120
   power: 0
   select: 0
   objNumber: 

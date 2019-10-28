@@ -6,7 +6,7 @@ using System.Linq;
 using Photon.Pun;
 using System;
 
-public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
+public class PlayerCharacter : MonoBehaviourPunCallbacks
 {
 
     public LayerMask mask;
@@ -169,7 +169,7 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
         if (collision.gameObject.tag == "Block"&&gameEnd)
         {
             var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass / 100;
-            if (damegeLog > 5)
+            if (damegeLog > 10)
             {
                 HP -= (int)damegeLog;
                 DamageEffect();
@@ -452,24 +452,22 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks,IPunObservable
 
     }
 
-	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-	{
-		if (stream.IsWriting)
-		{
-			stream.SendNext(timelimit);
-		}
-		else
-		{
-			timelimit = (float)stream.ReceiveNext();
-		}
-	}
+
 
 	[PunRPC]
 	void DestroyObject(string name)
 	{
 		var gameObject = GameObject.Find(name);
-        
-        Destroy(gameObject);
+		if (gameObject.GetComponent<PhotonView>().OwnerActorNr == PhotonNetwork.LocalPlayer.ActorNumber)
+		{
+			PhotonNetwork.Destroy(gameObject);
+			Debug.Log("M");
+		}
+		else
+		{
+			Debug.Log("E");
+			Destroy(gameObject);
+		}
 	}
 	[PunRPC]
 	void GameEnd()

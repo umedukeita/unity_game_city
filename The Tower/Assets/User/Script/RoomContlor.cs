@@ -19,6 +19,7 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 	// Use this for initialization
 	void Start()
 	{
+		Screen.SetResolution(1280, 720, false, 60);
 		PhotonNetwork.ConnectUsingSettings();
 		Room.SetActive(false);
 		Loby.SetActive(true);
@@ -101,7 +102,7 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 	public void RoomButton(string type)
 	{
 		switch (type) {
-			case "Exit":PhotonNetwork.LeaveRoom();title.text = "Loby"; break;
+			case "Exit":PhotonNetwork.LeaveRoom();title.text = "Lobby"; break;
 		}
 	}
 

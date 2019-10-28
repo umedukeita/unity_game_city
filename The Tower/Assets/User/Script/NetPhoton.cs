@@ -14,7 +14,7 @@ public class NetPhoton : MonoBehaviourPunCallbacks {
 		{
 			v.x = -200;
 			v.z = 200;
-			PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+			//PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
         }
 		else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
 		{
