@@ -168,8 +168,8 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
     {
         if (collision.gameObject.tag == "Block"&&gameEnd)
         {
-            var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass / 100;
-            if (damegeLog > 10)
+            var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass / 10;
+            if (damegeLog >= 10)
             {
                 HP -= (int)damegeLog;
                 DamageEffect();
@@ -458,10 +458,13 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
 	void DestroyObject(string name)
 	{
 		var gameObject = GameObject.Find(name);
-		if (gameObject.GetComponent<PhotonView>().OwnerActorNr == PhotonNetwork.LocalPlayer.ActorNumber)
+		if (gameObject.GetComponent<PhotonView>() != null)
 		{
-			PhotonNetwork.Destroy(gameObject);
-			Debug.Log("M");
+			if (gameObject.GetComponent<PhotonView>().OwnerActorNr == PhotonNetwork.LocalPlayer.ActorNumber)
+			{
+				PhotonNetwork.Destroy(gameObject);
+				Debug.Log("M");
+			}
 		}
 		else
 		{
