@@ -44,7 +44,7 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 	{
 		for (int i = 0; i < roomInfoList.Count; i++)
 		{
-			if (roomInfoList[i] != null)
+			if (roomInfoList[i].Name == ("Room"+i))
 			{
 				NOP[i].text = string.Format("{0}/{1}", roomInfoList[i].PlayerCount, roomInfoList[i].MaxPlayers);
 			}

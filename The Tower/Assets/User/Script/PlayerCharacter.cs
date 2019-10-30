@@ -122,7 +122,8 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
 				properties["Dead"]=dead;
 				PhotonNetwork.LocalPlayer.SetCustomProperties(properties);
 				photonView.RPC("GameEnd", RpcTarget.All);
-			}
+                TimeLimit.text = "終了";
+            }
 			ItemesCollect();
             HP_Slider.value = HP;
             if (items[select] != null)
@@ -192,7 +193,15 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
 		HP = 100;
 
 		itemCap += 100 * (dead + 1);
-		this.transform.position = new Vector3(-90, 1, -50);
+        Vector3 vector=new Vector3(-200, 0, 200); ;
+        switch (UnityEngine.Random.Range(0, 4))
+        {
+            case 0: vector = new Vector3(-200, 0, 200); break;
+            case 1: vector = new Vector3(200, 0, 200); break;
+            case 2: vector = new Vector3(-200, 0, -200); break;
+            case 3: vector = new Vector3(200, 0, -200); break;
+        }
+		this.transform.position = vector;
 	}
 
     void DamageEffect()
