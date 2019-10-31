@@ -45,7 +45,7 @@ public class CameraControl : MonoBehaviour
 
                 rotY = Mathf.Clamp(rotY, -80, 60); //縦回転角度制限する
 
-                transform.eulerAngles = new Vector3(-rotY, rotX, 0.0f); //回転の実行
+                transform.eulerAngles = new Vector3(-rotY*0.3f, rotX, 0.0f); //回転の実行
                                                                         // カメラとプレイヤーとの間の距離を調整
                 transform.position = lookAt - transform.forward * DistanceToPlayerM;
 

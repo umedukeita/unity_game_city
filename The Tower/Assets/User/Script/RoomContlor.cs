@@ -44,10 +44,20 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 	{
 		for (int i = 0; i < roomInfoList.Count; i++)
 		{
-			if (roomInfoList[i].Name == ("Room"+i))
+			//Debug.Log(roomInfoList[i].Name);
+			if (roomInfoList[i].Name == "Room1")
 			{
-				NOP[i].text = string.Format("{0}/{1}", roomInfoList[i].PlayerCount, roomInfoList[i].MaxPlayers);
+				NOP[0].text = string.Format("{0}/{1}", roomInfoList[i].PlayerCount, roomInfoList[i].MaxPlayers);
 			}
+			else if (roomInfoList[i].Name == "Room2")
+			{
+				NOP[1].text = string.Format("{0}/{1}", roomInfoList[i].PlayerCount, roomInfoList[i].MaxPlayers);
+			}
+			else if (roomInfoList[i].Name == "Room3")
+			{
+				NOP[2].text = string.Format("{0}/{1}", roomInfoList[i].PlayerCount, roomInfoList[i].MaxPlayers);
+			}
+			
 		}
 	}
 
@@ -115,6 +125,7 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		if (inputField.text == "")
 		{
 			text = "Player" + PhotonNetwork.LocalPlayer.ActorNumber;
+
 		}
 		else
 		{
@@ -152,7 +163,10 @@ public class RoomContlor : MonoBehaviourPunCallbacks
 		roomtext.text = "";
 		foreach (var player in PhotonNetwork.PlayerList)
 		{
-			roomtext.text += player.NickName + "\n";
+			if(player.NickName==PhotonNetwork.LocalPlayer.NickName)
+				roomtext.text += player.NickName + " ←YOU\n";
+			else
+				roomtext.text += player.NickName + "\n";
 		}
 		
 	}

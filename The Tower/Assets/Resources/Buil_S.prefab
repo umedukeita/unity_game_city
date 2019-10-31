@@ -133,7 +133,7 @@ MonoBehaviour:
   CapaCity: 700
   size: {x: 8, y: 12, z: 0}
   time: 1
-  powersave: 100
+  powersave: 110
 --- !u!114 &114233846542184650
 MonoBehaviour:
   m_ObjectHideFlags: 1

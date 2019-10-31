@@ -169,20 +169,23 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
     {
         if (collision.gameObject.tag == "Block"&&gameEnd)
         {
-            var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass / 10;
-            if (damegeLog >= 10)
-            {
-                HP -= (int)damegeLog;
-                DamageEffect();
-            }
-			if (HP <= 0)
+			if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 5)
 			{
-				dead++;
+				var damegeLog = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude * collision.gameObject.GetComponent<Rigidbody>().mass / 50;
+				if (damegeLog >= 10)
+				{
+					HP -= (int)damegeLog;
+					DamageEffect();
+				}
+				if (HP <= 0)
+				{
+					dead++;
 
-				this.transform.position = new Vector3(0, -19, 0);
-				Invoke("ReSpawn", 5f);
+					this.transform.position = new Vector3(0, -19, 0);
+					Invoke("ReSpawn", 5f);
+				}
+				Debug.Log((int)damegeLog);
 			}
-            Debug.Log((int)damegeLog);
 
         }
     }
@@ -370,20 +373,21 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
         var scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll > 0)
         {
-            select++;
-            if (select > 2)
-            {
-                select = 0;
-            }
-        }
+            select--;
+           
+			if (select < 0)
+			{
+				select = 2;
+			}
+		}
         else if (scroll < 0)
         {
-            select--;
-            if (select < 0)
-            {
-                select = 2;
-            }
-        }
+            select++;
+			if (select > 2)
+			{
+				select = 0;
+			}
+		}
 
         if (select == 0)
         {
@@ -510,6 +514,10 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
 				if (juni_b[i]==juni_a[j])
 				{
 					text[i] = "第" + (j+1) + "位" + "　　" +PhotonNetwork.PlayerList[i].NickName;
+					if (PhotonNetwork.PlayerList[i].NickName == PhotonNetwork.LocalPlayer.NickName)
+					{
+						text[i] += "　←YOU";
+					}
 					break;
 				}
 			}
@@ -518,6 +526,6 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
 		{
 			rankText.text += text[i]+"\n";
 		}
-
+		
 	}
 }

@@ -3,28 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class GameController : MonoBehaviour {
+using Photon.Pun;
+public class GameController : MonoBehaviourPunCallbacks
+{
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start()
+	{
+
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
+	void Update()
+	{
 
 
-		
-			//if (Input.GetKey(KeyCode.Escape)) Quit();
-		
+
+		//if (Input.GetKey(KeyCode.Escape)) Quit();
+
 	}
 
 	public void Back()
 	{
 		PhotonNetwork.LeaveRoom();
-		SceneManager.LoadScene("Lobby");
-		
+		SceneManager.LoadScene("Title");
+
 	}
 
 	void Quit()
