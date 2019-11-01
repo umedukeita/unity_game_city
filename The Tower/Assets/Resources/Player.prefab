@@ -2677,23 +2677,28 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   itemtype:
-  - {fileID: 100006, guid: 09f4942833b61cf429ab5ae4addaacac, type: 3}
-  - {fileID: 1890733882526950, guid: 3148cf20e9848b7468a565a990c101dd, type: 2}
-  - {fileID: 1486469680700902, guid: 0dcb63788843295468fe57911fd7121f, type: 2}
-  - {fileID: 1314466180287772, guid: 06a05872b52390148ab2afbfb6202d47, type: 2}
-  - {fileID: 1398983168112548, guid: 75d23045a904a01409b4481db24daf82, type: 2}
-  - {fileID: 1524062701039312, guid: 36820048ed587a948996d658c1740779, type: 2}
-  - {fileID: 1524406923159120, guid: 39746813f3dfea44b997e05ef00f4f17, type: 2}
+  - {fileID: 1045065224151960, guid: f8e9c92f8abcc3141b0dfa5c1e02aa3e, type: 2}
+  - {fileID: 1482421079620306, guid: 1444b48be870fb244b0f709db5ff665e, type: 2}
+  - {fileID: 1716006842107934, guid: 5f9dfffcfaf1df24c82617e4defbb618, type: 2}
   - {fileID: 1759513813341292, guid: aad9f7e7591db2e4681a7ed8b8254d7a, type: 2}
+  - {fileID: 1007346659640620, guid: 07a7920f7d0ce8b42baa2a7344d8b91e, type: 2}
+  - {fileID: 1757247374309860, guid: defc9c1b69e2f054781651b5b0e58a3c, type: 2}
+  - {fileID: 1524406923159120, guid: 39746813f3dfea44b997e05ef00f4f17, type: 2}
   gun: {fileID: 1203444377449418}
   HP: 100
-  timelimit: 120
+  timelimit: 180
   power: 0
   select: 0
   objNumber: 
   ItemSprite:
   - {fileID: 21300000, guid: 0366ed6c548a35a498b31dd458c7aefa, type: 3}
-  - {fileID: 21300000, guid: 92c8e6fe49f6f4f4ba47ed6714134f50, type: 3}
+  - {fileID: 21300000, guid: 7b83c317e71863a4b9a20faba54277f3, type: 3}
+  - {fileID: 21300000, guid: ab17f280f87398f4f84bc3302f8e3af1, type: 3}
+  - {fileID: 21300000, guid: cba216e7fed5bbf4889bb61fbf049208, type: 3}
+  - {fileID: 21300000, guid: b646d88f435b98240a14be28bad44445, type: 3}
+  - {fileID: 21300000, guid: 72305b4edb9c22641af3bb029ac8ccde, type: 3}
+  - {fileID: 21300000, guid: f4a3a8a162e149743a4facc66d61bfd8, type: 3}
+  - {fileID: 21300000, guid: e7c510c95568ecf4bb736cadc6823d60, type: 3}
   RayPos: {fileID: 4789146194655794}
   ComNum: 0
 --- !u!114 &114917855559545154

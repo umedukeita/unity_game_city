@@ -11,7 +11,9 @@ public class NetPhoton : MonoBehaviourPunCallbacks {
 	private Vector3 v;
 	// Use this for initialization
 	void Start () {
-		if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+        v.x = -200;
+        v.z = 200;
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
 		{
 			v.x = -200;
 			v.z = 200;

@@ -410,9 +410,9 @@ public class PlayerCharacter : MonoBehaviourPunCallbacks
             {
                 ItemImage[i].sprite = ItemSprite[0];
             }
-            else if (items[i].tag == "Block")
+            else
             {
-                ItemImage[i].sprite = ItemSprite[1];
+                ItemImage[i].sprite = ItemSprite[items[i].GetComponent<PrefabNumbr>().Number+1];
             }
         }
 

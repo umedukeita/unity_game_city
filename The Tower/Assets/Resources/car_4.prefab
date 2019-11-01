@@ -1127,8 +1127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7a78cbfd6d3434780c6de7df6886d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 7
-  CapaCity: 70
+  Number: 3
+  CapaCity: 100
   size: {x: 2, y: 1, z: 0}
   time: 1
   powersave: 70
