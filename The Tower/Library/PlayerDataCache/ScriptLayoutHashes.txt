@@ -2,6 +2,7 @@ WindowsStandalone
 PlayerPath?
 C:/Users/jyogi/Documents/GitHub/unity_game_city/The Tower/APP/APP.exe
 SceneListBegin?
+Assets/User/Scene/Title.unity
 Assets/User/Scene/Lobby.unity
 Assets/User/Scene/Main.unity
 SceneListEnd?
@@ -252,6 +253,7 @@ f38b4174afba90de97222f07433382a3 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo
 05524b8f659e7bfe5756d1335fec24ba PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.CurrentRoomIsOpenToggle
 4df86f437a61b08c14fd0adff88ddf71 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.ActivateTrigger
 000edb449b7a7e079cbf2dfc4a8824c5 Assembly-CSharp.dll:.ReverseCollider
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TitleButton
 a2efb0db652b8114d1ae7dd9a600d626 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.InputAxisScrollbar
 fe76270bd84ec3b6f2f6f92c69cf69da Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.AxisTouchButton
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Photon.Chat.UtilityScripts.EventSystemSpawner

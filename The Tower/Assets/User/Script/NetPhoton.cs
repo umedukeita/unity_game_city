@@ -15,26 +15,26 @@ public class NetPhoton : MonoBehaviourPunCallbacks {
 		{
 			v.x = -200;
 			v.z = 200;
-			color = new Color(180, 0, 180);
+			color = new Color(255, 0, 255);
 			//PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
         }
 		else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
 		{
 			v.x = 200;
 			v.z = 200;
-			color = new Color(0, 180, 0);
+			color = new Color(0, 255, 0);
 		}
 		else if (PhotonNetwork.LocalPlayer.ActorNumber == 3)
 		{
 			v.x = -200;
 			v.z = -200;
-			color = new Color(200, 200, 0);
+			color = new Color(255, 255, 0);
 		}
 		else if (PhotonNetwork.LocalPlayer.ActorNumber == 4)
 		{
 			v.x = 200;
 			v.z = -200;
-			color = new Color(0, 100, 255);
+			color = new Color(0, 255, 255);
 		}
         
         var obj = PhotonNetwork.Instantiate("Player", v, Quaternion.identity);
